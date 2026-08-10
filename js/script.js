@@ -85,8 +85,8 @@
       el.addEventListener("click", closeMobileMenu);
     });
 
-    var mq900 = window.matchMedia("(min-width: 900px)");
-    mq900.addEventListener("change", function (e) {
+    var mqDesktop = window.matchMedia("(min-width: 1000px)");
+    mqDesktop.addEventListener("change", function (e) {
       if (e.matches) closeMobileMenu();
     });
   }
@@ -136,5 +136,57 @@
       { passive: true }
     );
     updateFloat();
+  }
+
+  // ------------------------------------------------------------------
+  // Starfield background
+  // ------------------------------------------------------------------
+  var starsCanvas = document.getElementById("mb-stars");
+
+  if (starsCanvas && starsCanvas.getContext) {
+    var ctx = starsCanvas.getContext("2d");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var stars = [];
+    var raf = null;
+
+    function resizeStars() {
+      var w = window.innerWidth, h = window.innerHeight;
+      starsCanvas.width = w * dpr;
+      starsCanvas.height = h * dpr;
+      var count = Math.round((w * h) / 11000);
+      stars = [];
+      for (var i = 0; i < count; i++) {
+        stars.push({
+          x: Math.random() * starsCanvas.width,
+          y: Math.random() * starsCanvas.height,
+          r: (Math.random() * 1.2 + 0.25) * dpr,
+          a: Math.random() * 0.45 + 0.12,
+          speed: Math.random() * 0.5 + 0.15,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function drawStars(t) {
+      ctx.clearRect(0, 0, starsCanvas.width, starsCanvas.height);
+      for (var i = 0; i < stars.length; i++) {
+        var s = stars[i];
+        var tw = reduceMotion ? s.a : s.a + Math.sin((t / 1000) * s.speed + s.phase) * 0.2;
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(198,224,255," + Math.max(0, Math.min(1, tw)) + ")";
+        ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      if (!reduceMotion) raf = window.requestAnimationFrame(drawStars);
+    }
+
+    resizeStars();
+    window.addEventListener("resize", resizeStars);
+    if (reduceMotion) {
+      drawStars(0);
+    } else {
+      raf = window.requestAnimationFrame(drawStars);
+    }
   }
 })();

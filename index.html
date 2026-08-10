@@ -11,10 +11,12 @@
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<canvas id="mb-stars" aria-hidden="true"></canvas>
 
 <header class="site-header">
   <div class="header-inner">
@@ -23,38 +25,39 @@
       <span class="brand-name">MB AFFAIRES</span>
     </a>
 
-    <nav class="nav">
-      <div class="nav-desktop">
-        <div class="services-nav" data-services-nav>
-          <button class="services-trigger" data-services-trigger aria-expanded="false" aria-haspopup="true">
-            Services <span class="chev">▾</span>
-          </button>
-          <div class="services-panel">
-            <div class="services-panel-inner">
-              <div class="services-col">
-                <span class="services-col-title">ENTREPRISE</span>
-                <a href="#entreprise">Création d’entreprise</a>
-                <a href="#investissement">Investissement</a>
-                <a href="#domiciliation">Domiciliation</a>
-              </div>
-              <div class="services-col">
-                <span class="services-col-title">DIGITAL</span>
-                <a href="#publicites">Publicités payantes</a>
-                <a href="#reseaux-sociaux">Réseaux sociaux</a>
-                <a href="#site-web">Création de sites web</a>
-              </div>
+    <nav class="nav-desktop">
+      <div class="services-nav" data-services-nav>
+        <button class="services-trigger" data-services-trigger aria-expanded="false" aria-haspopup="true">
+          Services <span class="chev">▾</span>
+        </button>
+        <div class="services-panel">
+          <div class="services-panel-inner">
+            <div class="services-col">
+              <span class="services-col-title">ENTREPRISE</span>
+              <a href="#entreprise">Création d’entreprise</a>
+              <a href="#investissement">Investissement</a>
+              <a href="#domiciliation">Domiciliation</a>
+            </div>
+            <div class="services-col">
+              <span class="services-col-title">DIGITAL</span>
+              <a href="#publicites">Publicités payantes</a>
+              <a href="#reseaux-sociaux">Réseaux sociaux</a>
+              <a href="#site-web">Création de sites web</a>
             </div>
           </div>
         </div>
-        <a href="#approche" class="nav-link">Notre approche</a>
-        <a href="#" class="nav-cta" data-wa data-wa-msg="general" target="_blank" rel="noopener">Parler à un conseiller</a>
       </div>
+      <a href="#expertise" class="nav-link">Expertise</a>
+      <a href="#approche" class="nav-link">Notre approche</a>
+    </nav>
 
+    <div class="header-actions">
+      <a href="#" class="nav-cta" data-wa data-wa-msg="general" target="_blank" rel="noopener">Parler à un conseiller</a>
       <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
         <span></span>
         <span></span>
       </button>
-    </nav>
+    </div>
   </div>
 </header>
 
@@ -72,363 +75,291 @@
     <a href="#reseaux-sociaux" class="mobile-link" data-mobile-close>Réseaux sociaux</a>
     <a href="#site-web" class="mobile-link" data-mobile-close>Création de sites web</a>
     <div class="mobile-divider"></div>
-    <a href="#approche" class="mobile-approche" data-mobile-close>Notre approche</a>
+    <a href="#expertise" class="mobile-sub-link" data-mobile-close>Expertise</a>
+    <a href="#approche" class="mobile-sub-link" data-mobile-close>Notre approche</a>
     <a href="#" class="mobile-cta" data-wa data-wa-msg="general" target="_blank" rel="noopener">Parler à un conseiller</a>
   </div>
 </div>
 
 <section id="top" class="hero">
-  <div class="hero-grid">
-    <div>
-      <p class="hero-eyebrow" data-reveal>VOS AMBITIONS, NOTRE PLAN.</p>
-      <h1 class="hero-title" data-reveal>De la création<br>à la croissance.</h1>
-      <p class="hero-desc" data-reveal>MB Affaires accompagne entrepreneurs et entreprises dans leur création, leur structuration et leur développement.</p>
-      <div class="hero-actions" data-reveal>
-        <a href="#" class="btn btn-primary" data-wa data-wa-msg="general" target="_blank" rel="noopener">Parler à un conseiller</a>
-        <a href="#entreprise" class="btn btn-outline">Découvrir nos services</a>
-      </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <span class="hero-badge" data-reveal>
+      <span class="dot"></span>Conseil &amp; croissance
+    </span>
+    <h1 class="hero-title" data-reveal>VOS AMBITIONS<em>Notre plan.</em></h1>
+    <p class="hero-desc" data-reveal>MB Affaires accompagne entrepreneurs et entreprises dans leur création, leur structuration et leur développement.</p>
+    <div class="hero-actions" data-reveal>
+      <a href="#" class="btn btn-glow" data-wa data-wa-msg="general" target="_blank" rel="noopener">Parler à un conseiller</a>
+      <a href="#services" class="btn btn-outline">Découvrir nos services</a>
     </div>
-    <div class="hero-visual" data-reveal>
-      <img src="assets/hero-visual.jpg" alt="Bureau minimaliste MB Affaires" loading="eager">
+  </div>
+
+  <div class="stat-cards" data-reveal>
+    <div class="stat-card">
+      <div class="stat-value">+28%</div>
+      <p class="stat-label">Croissance moyenne du CA</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">87%</div>
+      <p class="stat-label">Clients qui poursuivent</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3,4x</div>
+      <p class="stat-label">ROI moyen des projets</p>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">06</div>
+      <p class="stat-label">Domaines d’accompagnement</p>
     </div>
   </div>
 </section>
 
-<section class="intro-band section-pad">
-  <div class="container intro-grid">
-    <h2 class="section-title" data-reveal>Un partenaire.<br>Toutes les étapes essentielles.</h2>
+<section class="section">
+  <div class="container about-grid">
     <div data-reveal>
-      <div class="intro-rule"></div>
-      <p class="intro-text">De la création de votre entreprise à son développement digital, MB Affaires vous accompagne avec une approche simple, structurée et adaptée à vos objectifs.</p>
+      <span class="eyebrow-pill">À propos</span>
+      <h2 class="section-title">Un partenaire<em>à chaque étape</em></h2>
+      <p class="about-desc">De la création de votre entreprise à son développement digital, MB Affaires vous accompagne avec une approche simple, structurée et adaptée à vos objectifs.</p>
+      <a href="#" class="btn btn-outline about-cta" data-wa data-wa-msg="general" target="_blank" rel="noopener">Nous contacter</a>
+    </div>
+
+    <div class="about-cards" data-reveal>
+      <div class="glass-card chart-card">
+        <p>Progression moyenne</p>
+        <div class="chart-bars">
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+          <div class="bar"></div>
+        </div>
+      </div>
+      <div class="glass-card stat-highlight-card">
+        <div class="stat-highlight-value">120+</div>
+        <p class="stat-highlight-label">Projets accompagnés depuis la création du cabinet</p>
+      </div>
+      <div class="glass-card wide-card">
+        <div class="icon-circle nudge">→</div>
+        <p>Un interlocuteur unique, de la première question à l’exécution.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="services-section">
+<section id="services" class="section">
+  <div class="container services-grid">
+    <div class="services-sticky-head" data-reveal>
+      <span class="eyebrow-pill">Services</span>
+      <h2 class="section-title">Nos expertises<em>pour votre croissance</em></h2>
+      <p class="services-desc">Six accompagnements, deux univers : structurer l’entreprise, puis développer sa visibilité.</p>
+    </div>
+
+    <div class="services-list">
+      <a id="entreprise" href="#" class="service-card" data-reveal data-wa data-wa-msg="creation" target="_blank" rel="noopener">
+        <div class="service-number">01</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Création d’entreprise</h3>
+            <span class="service-tag">ENTREPRISE</span>
+          </div>
+          <p class="service-desc">Nous vous accompagnons dans les démarches essentielles pour lancer votre activité sur des bases solides.</p>
+          <div class="service-chips">
+            <span>Choix de la structure</span>
+            <span>Constitution du dossier</span>
+            <span>Immatriculation</span>
+          </div>
+          <span class="service-link">Créer mon entreprise <span>→</span></span>
+        </div>
+      </a>
+
+      <a id="investissement" href="#" class="service-card" data-reveal data-wa data-wa-msg="invest" target="_blank" rel="noopener">
+        <div class="service-number">02</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Investissement</h3>
+            <span class="service-tag">ENTREPRISE</span>
+          </div>
+          <p class="service-desc">Analysez vos opportunités avant de vous engager.</p>
+          <div class="service-chips">
+            <span>Analyse de projet</span>
+            <span>Étude de rentabilité</span>
+            <span>Accompagnement personnalisé</span>
+          </div>
+          <span class="service-link">Discuter d’un investissement <span>→</span></span>
+        </div>
+      </a>
+
+      <a id="domiciliation" href="#" class="service-card" data-reveal data-wa data-wa-msg="domic" target="_blank" rel="noopener">
+        <div class="service-number">03</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Domiciliation</h3>
+            <span class="service-tag">ENTREPRISE</span>
+          </div>
+          <p class="service-desc">Une adresse professionnelle pour donner à votre entreprise une base crédible.</p>
+          <div class="service-chips">
+            <span>Adresse professionnelle</span>
+            <span>Gestion du courrier</span>
+            <span>Réexpédition</span>
+          </div>
+          <span class="service-link">Demander une domiciliation <span>→</span></span>
+        </div>
+      </a>
+
+      <a id="publicites" href="#" class="service-card" data-reveal data-wa data-wa-msg="ads" target="_blank" rel="noopener">
+        <div class="service-number">04</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Publicités payantes</h3>
+            <span class="service-tag">CROISSANCE</span>
+          </div>
+          <p class="service-desc">Des campagnes pensées pour transformer votre budget publicitaire en opportunités commerciales.</p>
+          <div class="service-chips">
+            <span>Meta Ads</span>
+            <span>Google Ads</span>
+            <span>Optimisation des performances</span>
+          </div>
+          <span class="service-link">Parler de mes campagnes <span>→</span></span>
+        </div>
+      </a>
+
+      <a id="reseaux-sociaux" href="#" class="service-card" data-reveal data-wa data-wa-msg="social" target="_blank" rel="noopener">
+        <div class="service-number">05</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Gestion des réseaux sociaux</h3>
+            <span class="service-tag">CROISSANCE</span>
+          </div>
+          <p class="service-desc">Construisez une présence cohérente et professionnelle sur les réseaux sociaux.</p>
+          <div class="service-chips">
+            <span>Stratégie de contenu</span>
+            <span>Création &amp; publication</span>
+            <span>Analyse des performances</span>
+          </div>
+          <span class="service-link">Développer mes réseaux <span>→</span></span>
+        </div>
+      </a>
+
+      <a id="site-web" href="#" class="service-card" data-reveal data-wa data-wa-msg="web" target="_blank" rel="noopener">
+        <div class="service-number">06</div>
+        <div class="service-body">
+          <div class="service-head-row">
+            <h3 class="service-title">Création de sites web</h3>
+            <span class="service-tag">CROISSANCE</span>
+          </div>
+          <p class="service-desc">Un site professionnel pensé pour présenter votre activité et convertir vos visiteurs.</p>
+          <div class="service-chips">
+            <span>Design sur mesure</span>
+            <span>Responsive</span>
+            <span>SEO &amp; performance</span>
+          </div>
+          <span class="service-link">Créer mon site <span>→</span></span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="expertise" class="section">
   <div class="container">
-    <div class="services-header" data-reveal>
-      <div class="eyebrow-row">
-        <span class="eyebrow">01 — ENTREPRISE</span>
-        <h2 class="section-title">Structurer votre projet.</h2>
-      </div>
+    <div class="section-head" data-reveal>
+      <span class="eyebrow-pill">Expertise</span>
+      <h2 class="section-title">Nos domaines<em>d’expertise</em></h2>
     </div>
-
-    <article id="entreprise" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">01</span>
-        <h3 class="service-title">Création d’entreprise</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Nous vous accompagnons dans les démarches essentielles pour lancer votre activité sur des bases solides.</p>
-        <div class="service-tags">
-          <span>— Choix de la structure</span><span>— Constitution du dossier</span><span>— Immatriculation</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="creation" target="_blank" rel="noopener">Créer mon entreprise <span>→</span></a>
-      </div>
-    </article>
-
-    <article id="investissement" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">02</span>
-        <h3 class="service-title">Investissement</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Analysez vos opportunités avant de vous engager.</p>
-        <div class="service-tags">
-          <span>— Analyse de projet</span><span>— Étude de rentabilité</span><span>— Accompagnement personnalisé</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="invest" target="_blank" rel="noopener">Discuter d’un investissement <span>→</span></a>
-      </div>
-    </article>
-
-    <article id="domiciliation" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">03</span>
-        <h3 class="service-title">Domiciliation</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Une adresse professionnelle pour donner à votre entreprise une base crédible.</p>
-        <div class="service-tags">
-          <span>— Adresse professionnelle</span><span>— Gestion du courrier</span><span>— Réexpédition</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="domic" target="_blank" rel="noopener">Demander une domiciliation <span>→</span></a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<section class="services-section alt">
-  <div class="container">
-    <div class="services-header alt" data-reveal>
-      <div>
-        <span class="eyebrow" style="display:block; margin-bottom:22px;">02 — CROISSANCE</span>
-        <h2 class="section-title">Développer votre visibilité.</h2>
-      </div>
-      <div class="croissance-visual">
-        <img src="assets/croissance-visual.jpg" alt="Moodboard matières et branding MB Affaires" loading="lazy">
-      </div>
-    </div>
-
-    <article id="publicites" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">04</span>
-        <h3 class="service-title">Publicités payantes</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Des campagnes pensées pour transformer votre budget publicitaire en opportunités commerciales.</p>
-        <div class="service-tags">
-          <span>— Meta Ads</span><span>— Google Ads</span><span>— Optimisation des performances</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="ads" target="_blank" rel="noopener">Parler de mes campagnes <span>→</span></a>
-      </div>
-    </article>
-
-    <article id="reseaux-sociaux" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">05</span>
-        <h3 class="service-title">Gestion des réseaux sociaux</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Construisez une présence cohérente et professionnelle sur les réseaux sociaux.</p>
-        <div class="service-tags">
-          <span>— Stratégie de contenu</span><span>— Création &amp; publication</span><span>— Analyse des performances</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="social" target="_blank" rel="noopener">Développer mes réseaux <span>→</span></a>
-      </div>
-    </article>
-
-    <article id="site-web" class="service-article" data-reveal>
-      <div class="service-number-title">
-        <span class="service-number">06</span>
-        <h3 class="service-title">Création de sites web</h3>
-      </div>
-      <div class="service-body">
-        <p class="service-desc">Un site professionnel pensé pour présenter votre activité et convertir vos visiteurs.</p>
-        <div class="service-tags">
-          <span>— Design sur mesure</span><span>— Responsive</span><span>— SEO &amp; performance</span>
-        </div>
-        <a href="#" class="link-arrow" data-wa data-wa-msg="web" target="_blank" rel="noopener">Créer mon site <span>→</span></a>
-      </div>
-    </article>
-  </div>
-</section>
-
-<div class="marquee-wrap">
-  <div class="marquee-heading" data-reveal>
-    <span>NOS DOMAINES D’EXPERTISE</span>
-    <div class="marquee-rule"></div>
-  </div>
-  <div class="marquee-track-outer">
-    <div class="marquee-set">
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">ENTREPRISE</span>
+    <div class="expertise-grid" data-reveal>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-square"></span></div>
         <h3>Stratégie &amp; conseil</h3>
-        <p>Nous clarifions votre vision, analysons votre environnement et définissons des plans d’action efficaces.</p>
-        <span class="marquee-card-arrow">→</span>
+        <p>Nous clarifions votre vision et définissons des plans d’action efficaces.</p>
       </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">ENTREPRISE</span>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-circle"></span></div>
         <h3>Structuration</h3>
-        <p>Nous optimisons vos processus, vos ressources et votre organisation pour maximiser votre performance.</p>
-        <span class="marquee-card-arrow">→</span>
+        <p>Nous optimisons vos processus et votre organisation pour maximiser la performance.</p>
       </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">CROISSANCE</span>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-diamond"></span></div>
         <h3>Marketing &amp; acquisition</h3>
         <p>Nous attirons les bons clients grâce à des stratégies digitales ciblées et mesurables.</p>
-        <span class="marquee-card-arrow">→</span>
       </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">CROISSANCE</span>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-line"></span></div>
         <h3>Branding &amp; positionnement</h3>
-        <p>Nous construisons des marques fortes, cohérentes et différenciantes qui durent.</p>
-        <span class="marquee-card-arrow">→</span>
+        <p>Nous construisons des marques cohérentes et différenciantes qui durent.</p>
       </div>
-    </div>
-    <div class="marquee-set" aria-hidden="true">
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">ENTREPRISE</span>
-        <h3>Stratégie &amp; conseil</h3>
-        <p>Nous clarifions votre vision, analysons votre environnement et définissons des plans d’action efficaces.</p>
-        <span class="marquee-card-arrow">→</span>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-rounded"></span></div>
+        <h3>Présence digitale</h3>
+        <p>Site, réseaux et campagnes alignés sur une même image de marque.</p>
       </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">ENTREPRISE</span>
-        <h3>Structuration</h3>
-        <p>Nous optimisons vos processus, vos ressources et votre organisation pour maximiser votre performance.</p>
-        <span class="marquee-card-arrow">→</span>
-      </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">CROISSANCE</span>
-        <h3>Marketing &amp; acquisition</h3>
-        <p>Nous attirons les bons clients grâce à des stratégies digitales ciblées et mesurables.</p>
-        <span class="marquee-card-arrow">→</span>
-      </div>
-      <div class="marquee-card">
-        <span class="marquee-card-eyebrow">CROISSANCE</span>
-        <h3>Branding &amp; positionnement</h3>
-        <p>Nous construisons des marques fortes, cohérentes et différenciantes qui durent.</p>
-        <span class="marquee-card-arrow">→</span>
+      <div class="expertise-card">
+        <div class="pulse-icon"><span class="shape shape-corner"></span></div>
+        <h3>Suivi &amp; performance</h3>
+        <p>Un reporting clair pour décider sur des chiffres, pas des impressions.</p>
       </div>
     </div>
   </div>
-</div>
+</section>
 
-<section id="approche" class="methode-section section-pad">
+<section id="approche" class="section">
   <div class="container">
-    <div class="eyebrow-row" data-reveal>
-      <span class="eyebrow">03 — MÉTHODE</span>
-      <h2 class="section-title">Une méthode simple.</h2>
+    <div class="section-head" data-reveal>
+      <span class="eyebrow-pill">Notre approche</span>
+      <h2 class="section-title">Une méthode<em>simple</em></h2>
     </div>
     <div class="steps-grid" data-reveal>
-      <div class="step">
+      <div class="step-card">
         <span class="step-number">01</span>
         <h3>Échange</h3>
         <p>Nous comprenons votre projet.</p>
       </div>
-      <div class="step">
+      <div class="step-card">
         <span class="step-number">02</span>
         <h3>Analyse</h3>
         <p>Nous identifions les priorités.</p>
       </div>
-      <div class="step">
+      <div class="step-card">
         <span class="step-number">03</span>
         <h3>Plan d’action</h3>
         <p>Nous définissons la solution adaptée.</p>
       </div>
-      <div class="step">
+      <div class="step-card">
         <span class="step-number">04</span>
         <h3>Accompagnement</h3>
         <p>Nous exécutons et suivons avec vous.</p>
       </div>
     </div>
-    <div class="methode-cta" data-reveal>
-      <a href="#" class="btn btn-dark" data-wa data-wa-msg="rdv" target="_blank" rel="noopener">Prendre rendez-vous</a>
+    <div class="approche-cta" data-reveal>
+      <a href="#" class="btn btn-glow" data-wa data-wa-msg="rdv" target="_blank" rel="noopener">Prendre rendez-vous</a>
     </div>
-  </div>
-</section>
-
-<section class="performance-section section-pad">
-  <div class="container performance-grid">
-    <div data-reveal>
-      <h2 class="performance-title">De la stratégie<br>à la <em>performance</em> mesurable.</h2>
-      <p class="performance-desc">MB Affaires accompagne les entreprises ambitieuses avec une approche data-driven pour transformer leurs ambitions en résultats concrets.</p>
-      <div class="stats-grid">
-        <div class="stat">
-          <div class="stat-value">+28%</div>
-          <p class="stat-label">Croissance moyenne du CA de nos clients</p>
-        </div>
-        <div class="stat">
-          <div class="stat-value">3,4x</div>
-          <p class="stat-label">ROI moyen sur les projets accompagnés</p>
-        </div>
-      </div>
-      <a href="#" class="btn btn-sand performance-cta" data-wa data-wa-msg="general" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.8-.1 1.5Z"/></svg>
-        Discuter sur WhatsApp
-      </a>
-    </div>
-
-    <div class="dashboard-card" data-reveal>
-      <div class="dashboard-header">
-        <span>Tableau de bord — Performance globale</span>
-        <span class="dashboard-range">12 derniers mois ⌄</span>
-      </div>
-
-      <div class="kpi-grid">
-        <div class="kpi">
-          <div class="kpi-label">Chiffre d’affaires</div>
-          <div class="kpi-value">2,47 M MAD</div>
-          <div class="kpi-delta">↑ 24%</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Marge brute</div>
-          <div class="kpi-value">41,8%</div>
-          <div class="kpi-delta">↑ 6,2 pts</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Acquisition clients</div>
-          <div class="kpi-value">1 356</div>
-          <div class="kpi-delta">↑ 31%</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label">Valeur vie client (LTV)</div>
-          <div class="kpi-value">32 K MAD</div>
-          <div class="kpi-delta">↑ 18%</div>
-        </div>
-      </div>
-
-      <div class="charts-grid">
-        <div class="chart-panel">
-          <div class="chart-legend">
-            <span class="legend-item"><span class="legend-dot"></span>CA</span>
-            <span class="legend-item"><span class="legend-line"></span>Objectif</span>
-          </div>
-          <svg viewBox="0 0 520 210" class="chart-svg" aria-hidden="true">
-            <line x1="44" y1="20" x2="510" y2="20" stroke="rgba(18,17,14,0.08)"></line>
-            <line x1="44" y1="65" x2="510" y2="65" stroke="rgba(18,17,14,0.08)"></line>
-            <line x1="44" y1="110" x2="510" y2="110" stroke="rgba(18,17,14,0.08)"></line>
-            <line x1="44" y1="155" x2="510" y2="155" stroke="rgba(18,17,14,0.08)"></line>
-            <line x1="44" y1="175" x2="510" y2="175" stroke="rgba(18,17,14,0.18)"></line>
-            <text x="0" y="24" font-size="10" fill="#757976" font-family="Manrope">3 M</text>
-            <text x="0" y="69" font-size="10" fill="#757976" font-family="Manrope">2 M</text>
-            <text x="0" y="114" font-size="10" fill="#757976" font-family="Manrope">1 M</text>
-            <text x="0" y="179" font-size="10" fill="#757976" font-family="Manrope">0 M</text>
-            <polyline points="60,168 100,160 140,150 180,155 220,138 260,126 300,118 340,96 380,102 420,80 460,62 500,44" fill="none" stroke="#A49F8F" stroke-width="1" stroke-dasharray="4 4"></polyline>
-            <polyline points="60,172 100,164 140,146 180,158 220,132 260,140 300,112 340,104 380,88 420,86 460,66 500,40" fill="none" stroke="#757976" stroke-width="1.6" stroke-linejoin="round"></polyline>
-            <circle cx="500" cy="40" r="3" fill="#757976"></circle>
-            <rect x="440" y="18" width="72" height="20" fill="#A49F8F"></rect>
-            <text x="476" y="32" font-size="10" fill="#12110E" font-family="Manrope" text-anchor="middle">2,47 M MAD</text>
-            <text x="60" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Jan.</text>
-            <text x="140" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Mar.</text>
-            <text x="220" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Mai</text>
-            <text x="300" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Juil.</text>
-            <text x="380" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Sept.</text>
-            <text x="460" y="196" font-size="9" fill="#757976" font-family="Manrope" text-anchor="middle">Nov.</text>
-          </svg>
-        </div>
-
-        <div class="chart-panel">
-          <div class="donut-label">Répartition par canal</div>
-          <div class="donut-row">
-            <div class="donut"><div class="donut-hole"></div></div>
-            <div class="donut-legend">
-              <span class="donut-legend-item"><span class="dot" style="background:#757976"></span>Acquisition payante <span class="pct">42%</span></span>
-              <span class="donut-legend-item"><span class="dot" style="background:#A49F8F"></span>SEO / Contenu <span class="pct">28%</span></span>
-              <span class="donut-legend-item"><span class="dot" style="background:#12110E"></span>Partenariats <span class="pct">18%</span></span>
-              <span class="donut-legend-item"><span class="dot" style="background:#757976"></span>Autres <span class="pct">12%</span></span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="final-cta">
-  <div class="final-cta-inner">
-    <h2 class="final-cta-title" data-reveal>Vous avez un projet ?<br>Parlons-en.</h2>
-    <p class="final-cta-desc" data-reveal>Création, investissement, domiciliation ou développement digital : échangeons sur votre besoin et identifions la prochaine étape.</p>
-    <div class="final-cta-actions" data-reveal>
-      <a href="#" class="btn btn-primary" data-wa data-wa-msg="general" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.8-.1 1.5Z"/></svg>
-        Discuter sur WhatsApp
-      </a>
-    </div>
-    <p class="final-cta-note" data-reveal>Réponse personnalisée selon votre projet.</p>
   </div>
 </section>
 
 <footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <img src="assets/mb-logo-light.png" alt="MB Affaires">
-      <span class="brand-name">MB AFFAIRES</span>
+  <div class="container">
+    <div class="footer-glow-card" data-reveal>
+      <span class="eyebrow-pill footer-eyebrow">Restons en contact</span>
+      <h2 class="footer-title">Vous avez un projet ?<em>Parlons-en.</em></h2>
+      <p class="footer-desc">Création, investissement, domiciliation ou développement digital : échangeons sur votre besoin et identifions la prochaine étape.</p>
+      <div class="footer-cta-row">
+        <a href="#" class="btn btn-glow" data-wa data-wa-msg="general" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.8-.1 1.5Z"/></svg>
+          Discuter sur WhatsApp
+        </a>
+      </div>
+      <p class="footer-note">Réponse personnalisée selon votre projet.</p>
     </div>
-    <p class="footer-tagline">Création • Investissement • Domiciliation • Marketing digital</p>
-    <a href="#" class="footer-link" data-wa data-wa-msg="general" target="_blank" rel="noopener">Nous contacter sur WhatsApp</a>
+
+    <div class="footer-bottom-row">
+      <div class="footer-brand">
+        <img src="assets/mb-logo-light.png" alt="MB Affaires">
+        <span class="brand-name" style="font-size:19px;">MB AFFAIRES</span>
+      </div>
+      <p class="footer-tagline">Création • Investissement • Domiciliation • Marketing digital</p>
+      <span class="footer-copy">© 2026 MB Affaires</span>
+    </div>
   </div>
-  <div class="footer-copy">© 2026 MB Affaires. Tous droits réservés.</div>
 </footer>
 
 <a href="#" class="float-wa" data-wa data-wa-msg="general" target="_blank" rel="noopener" aria-label="Nous contacter sur WhatsApp" data-float-wa>
