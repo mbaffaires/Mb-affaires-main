@@ -7,9 +7,9 @@
   var WHATSAPP_NUMBER = "212777010882";
 
   var MESSAGES = {
-    projet: "Bonjour MB Consulting, je souhaite échanger sur mon projet MRE 360 à Marrakech.",
-    tarif: "Bonjour MB Consulting, je souhaite parler de mon projet et du forfait MRE 360 (900 €).",
-    concierge: "Bonjour MB Consulting, j’ai besoin d’aide sur une démarche administrative au Maroc."
+    projet: "Bonjour MB Affaires, je souhaite échanger sur mon projet MRE 360 à Marrakech.",
+    tarif: "Bonjour MB Affaires, je souhaite parler de mon projet et du forfait MRE 360 (900 €).",
+    concierge: "Bonjour MB Affaires, j’ai besoin d’aide sur une démarche administrative au Maroc."
   };
 
   function waLink(msg) {
@@ -19,6 +19,9 @@
   document.querySelectorAll("[data-wa]").forEach(function (el) {
     var key = el.getAttribute("data-wa-msg") || "projet";
     el.setAttribute("href", waLink(MESSAGES[key] || MESSAGES.projet));
+    el.addEventListener("click", function () {
+      if (window.umami) window.umami.track("whatsapp_click", { context: key });
+    });
   });
 
   // ------------------------------------------------------------------

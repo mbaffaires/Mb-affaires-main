@@ -24,6 +24,9 @@
   document.querySelectorAll("[data-wa]").forEach(function (el) {
     var key = el.getAttribute("data-wa-msg") || "general";
     el.setAttribute("href", waLink(MESSAGES[key] || MESSAGES.general));
+    el.addEventListener("click", function () {
+      if (window.umami) window.umami.track("whatsapp_click", { context: key });
+    });
   });
 
   // ------------------------------------------------------------------

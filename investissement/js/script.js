@@ -20,6 +20,9 @@
   document.querySelectorAll("[data-wa]").forEach(function (el) {
     var key = el.getAttribute("data-wa-msg") || "projet";
     el.setAttribute("href", waLink(MESSAGES[key] || MESSAGES.projet));
+    el.addEventListener("click", function () {
+      if (window.umami) window.umami.track("whatsapp_click", { context: key });
+    });
   });
 
   // ------------------------------------------------------------------
@@ -218,6 +221,10 @@
 
     budgetInput.addEventListener("focus", function () {
       budgetInput.select();
+    });
+
+    budgetInput.addEventListener("change", function () {
+      if (window.umami) window.umami.track("calculator_used", { budget: parseBudget(budgetInput.value) });
     });
 
     updateCalculator();
