@@ -25,6 +25,25 @@
   });
 
   // ------------------------------------------------------------------
+  // Meta Pixel — Purchase event on any WhatsApp link click
+  // Delegated + capture phase so it still fires if the wa.me href is
+  // ever changed (message text, number, markup) without needing to be
+  // kept in sync with the WA link setup above. No preventDefault: we
+  // don't touch navigation, just observe it.
+  // ------------------------------------------------------------------
+  document.addEventListener(
+    "click",
+    function (e) {
+      var waAnchor = e.target.closest && e.target.closest('a[href*="wa.me"]');
+      if (!waAnchor) return;
+      if (typeof window.fbq === "function") {
+        window.fbq("track", "Purchase", { content_name: "whatsapp" });
+      }
+    },
+    true
+  );
+
+  // ------------------------------------------------------------------
   // Mobile menu
   // ------------------------------------------------------------------
   var mobileMenu = document.querySelector("[data-mobile-menu]");
