@@ -40,6 +40,65 @@
   );
 
   // ------------------------------------------------------------------
+  // Mobile menu
+  // ------------------------------------------------------------------
+  var mobileMenu = document.querySelector("[data-hk-mobile-menu]");
+  var mobileToggle = document.querySelector("[data-hk-menu-toggle]");
+  var mobileClosers = document.querySelectorAll("[data-hk-menu-close]");
+
+  function openMobileMenu() {
+    mobileMenu.classList.add("open");
+    mobileToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMobileMenu() {
+    mobileMenu.classList.remove("open");
+    mobileToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  if (mobileMenu && mobileToggle) {
+    mobileToggle.addEventListener("click", function () {
+      if (mobileMenu.classList.contains("open")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+    mobileClosers.forEach(function (el) {
+      el.addEventListener("click", closeMobileMenu);
+    });
+    window.matchMedia("(min-width: 900px)").addEventListener("change", function (e) {
+      if (e.matches) closeMobileMenu();
+    });
+  }
+
+  // ------------------------------------------------------------------
+  // Mobile bottom WhatsApp bar — appears once the hero has been
+  // scrolled past, mirrors the desktop sticky pill's behaviour
+  // ------------------------------------------------------------------
+  var mobileBar = document.querySelector("[data-hk-mobile-bar]");
+  if (mobileBar) {
+    var barTicking = false;
+    function updateMobileBar() {
+      mobileBar.classList.toggle("visible", window.scrollY > window.innerHeight * 0.6);
+      barTicking = false;
+    }
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (!barTicking) {
+          window.requestAnimationFrame(updateMobileBar);
+          barTicking = true;
+        }
+      },
+      { passive: true }
+    );
+    updateMobileBar();
+  }
+
+  // ------------------------------------------------------------------
   // Scroll reveal (ported from the Claude Design reference's DCLogic)
   // ------------------------------------------------------------------
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
