@@ -9,7 +9,7 @@
   var MESSAGES = {
     projet: "Bonjour MB Affaires, je souhaite faire analyser mon projet d’investissement au Maroc.",
     general: "Bonjour MB Affaires, je souhaite parler à un conseiller au sujet d’un investissement au Maroc.",
-    mre: "Bonjour MB Affaires, je suis MRE et je souhaite échanger sur mon projet d’investissement au Maroc.",
+    mre: "Bonjour MB Affaires, je vis à l’étranger et je souhaite échanger sur mon projet d’investissement au Maroc.",
     dossier: "Bonjour MB Affaires, je souhaite être accompagné(e) pour structurer mon dossier de financement."
   };
 
