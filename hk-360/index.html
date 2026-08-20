@@ -11,8 +11,54 @@
 <link rel="icon" href="/assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/hk-360/css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  html, body { margin: 0; padding: 0; background: #08090A; }
+  * { box-sizing: border-box; }
+  a { color: #45E3A4; text-decoration: none; }
+  html { scroll-behavior: smooth; }
+  @keyframes mre-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes mre-pulse { 0%,100% { opacity: .35; } 50% { opacity: 1; } }
+  @keyframes mre-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes mre-float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
+  @keyframes mre-glow { 0%,100% { opacity: .55; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.06); } }
+  @keyframes mre-sweep { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
+  @media (max-width: 1100px) { .mre-sticky { display: none !important; } }
+
+  /* hover states (ported from Claude Design style-hover attributes) */
+  .hk-nav-link:hover { color: #45E3A4; }
+  .hk-header-cta:hover { background: #7BEFC1; }
+  .hk-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 36px rgba(69,227,164,.32); }
+  .hk-btn-outline:hover { border-color: rgba(69,227,164,.5); color: #45E3A4; }
+  .hk-card:hover { transform: translateY(-7px); border-color: rgba(69,227,164,.45); box-shadow: inset 0 1px 0 rgba(255,255,255,.4), inset 0 -1px 0 rgba(69,227,164,.5), inset 26px 0 52px -30px rgba(69,227,164,1), inset -26px 0 52px -30px rgba(69,227,164,1), 0 34px 80px rgba(0,0,0,.6), 0 0 60px rgba(69,227,164,.18); }
+  .hk-pill-outline:hover { background: rgba(69,227,164,.1); }
+  .hk-list-item:hover { padding-left: 14px; background: linear-gradient(90deg, rgba(69,227,164,.12), rgba(69,227,164,0) 70%); }
+  .hk-tile:hover { transform: translateY(-6px); border-color: rgba(69,227,164,.6); background: linear-gradient(180deg,rgba(69,227,164,.08),rgba(8,9,10,0) 62%); }
+  .hk-tarif-primary:hover { background: #7BEFC1; }
+  .hk-tarif-outline:hover { border-color: rgba(69,227,164,.55); color: #45E3A4; }
+  .hk-cta-lg:hover { background: #7BEFC1; }
+  .hk-footer-link:hover { color: #45E3A4; }
+  .hk-sticky-btn:hover { background: #7BEFC1; }
+
+  /* minimal responsive additions (design reference is desktop-only) */
+  @media (max-width: 900px) {
+    .hk-nav { display: none !important; }
+  }
+  @media (max-width: 780px) {
+    .hk-sec { padding-left: 22px !important; padding-right: 22px !important; }
+    .hk-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .hk-grid-2x2 { grid-template-columns: 1fr !important; }
+    .hk-grid-3 { grid-template-columns: 1fr !important; }
+    .hk-grid-4 { grid-template-columns: 1fr 1fr !important; }
+    .hk-stats { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+    .hk-badges-row { flex-wrap: wrap; justify-content: center; }
+    .mre-sticky { display: none !important; }
+  }
+  @media (max-width: 480px) {
+    .hk-grid-4 { grid-template-columns: 1fr !important; }
+    .hk-stats { grid-template-columns: 1fr !important; }
+  }
+</style>
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -34,590 +80,572 @@ src="https://www.facebook.com/tr?id=1593886608929984&ev=PageView&noscript=1"
 <script defer src="https://backend-mb-affaires.vercel.app/script.js" data-website-id="721369be-13ec-4f88-8487-588a2d5a3856"></script>
 </head>
 <body>
+<div style="background:#08090A;color:#F2F3F1;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden">
 
-<canvas id="mb-stars" aria-hidden="true"></canvas>
-
-<header class="site-header">
-  <div class="header-inner">
-    <div class="brand">
-      <img src="/assets/mb-logo-light.png" alt="MB Affaires">
-      <span class="brand-name">MB AFFAIRES</span>
+  <header style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:14px 40px;background:rgba(8,9,10,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:30px;height:30px;border:1px solid rgba(69,227,164,.5);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:#45E3A4">MB</div>
+      <div style="display:flex;flex-direction:column;line-height:1.1">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.16em">MB AFFAIRES</span>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:.2em;color:rgba(242,243,241,.45)">HK 360 • HONG KONG</span>
+      </div>
     </div>
-
-    <nav class="nav-desktop">
-      <a href="#offre" class="nav-link">L’offre</a>
-      <a href="#conciergerie" class="nav-link">Conciergerie</a>
-      <a href="#parcours" class="nav-link">Parcours</a>
-      <a href="#tarif" class="nav-link">2 200 €</a>
+    <nav class="hk-nav" style="display:flex;align-items:center;gap:28px;font-size:14px;color:rgba(242,243,241,.66)">
+      <a href="#offre" class="hk-nav-link" style="color:inherit">L’offre</a>
+      <a href="#conciergerie" class="hk-nav-link" style="color:inherit">Conciergerie</a>
+      <a href="#parcours" class="hk-nav-link" style="color:inherit">Parcours</a>
+      <a href="#tarif" class="hk-nav-link" style="color:inherit">2 200 €</a>
     </nav>
+    <a href="#" class="hk-header-cta" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;background:#45E3A4;color:#04150E;font-size:13.5px;font-weight:600;letter-spacing:.02em">Échanger sur mon projet</a>
+  </header>
 
-    <div class="header-actions">
-      <a href="#" class="nav-cta" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer">Échanger sur mon projet</a>
-      <button class="mobile-toggle" data-mobile-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Ouvrir le menu">
-        <span></span>
-        <span></span>
-      </button>
+  <section style="position:relative;overflow:hidden;padding:76px 40px 84px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="position:absolute;bottom:-320px;left:50%;width:1500px;height:760px;background:radial-gradient(50% 50% at 50% 50%, rgba(69,227,164,.22), rgba(8,9,10,0) 72%);animation:mre-glow 9s ease-in-out infinite;pointer-events:none"></div>
+    <div style="position:absolute;top:-260px;left:50%;width:1100px;height:620px;background:radial-gradient(50% 50% at 50% 50%, rgba(69,227,164,.09), rgba(8,9,10,0) 70%);transform:translateX(-50%);pointer-events:none"></div>
+
+    <div style="position:relative;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
+      <div class="hk-badges-row" style="display:flex;gap:18px;animation:mre-rise .7s ease-out both">
+        <div style="--r:-6deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out infinite">CR</div>
+        <div style="--r:4deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out .8s infinite">IRD</div>
+        <div style="--r:-3deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out 1.6s infinite">BR</div>
+        <div style="--r:7deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out 2.4s infinite">CS</div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;margin-top:34px;padding:9px 20px 9px 12px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#101213;animation:mre-rise .7s ease-out .1s both">
+        <span style="width:22px;height:22px;border-radius:50%;background:rgba(69,227,164,.16);color:#45E3A4;display:flex;align-items:center;justify-content:center;font-size:11px">★</span>
+        <span style="font-size:14.5px;font-weight:600;color:#45E3A4">2 200 €</span>
+        <span style="width:1px;height:14px;background:rgba(255,255,255,.14)"></span>
+        <span style="font-size:14.5px;color:rgba(242,243,241,.72)">forfait complet — création, adresse, Company Secretary, conciergerie</span>
+      </div>
+
+      <h1 style="margin:34px 0 0;max-width:960px;font-weight:700;font-size:clamp(42px,6vw,86px);line-height:1.02;letter-spacing:-.035em;text-wrap:balance">
+        <span style="background:linear-gradient(96deg,#45E3A4,#F2F3F1 46%,#45E3A4 78%,#F2F3F1);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:mre-sweep 9s linear infinite">Votre société à Hong Kong.</span><br />Sans vous déplacer.
+      </h1>
+
+      <p style="margin:28px 0 0;max-width:760px;font-size:19px;color:rgba(242,243,241,.6);text-wrap:pretty;animation:mre-rise .7s ease-out .2s both">
+        <span style="color:#F2F3F1">HK 360 est conçu pour les entrepreneurs et investisseurs basés en France</span> qui veulent une société à Hong Kong sans naviguer seuls dans une juridiction qu’ils ne connaissent pas.
+      </p>
+
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:38px">
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 22px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#0E1011;animation:mre-rise .7s ease-out .3s both">
+          <span style="flex:none;width:20px;height:20px;border-radius:50%;background:#45E3A4;color:#04150E;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">✓</span>
+          <span style="font-size:16px;font-weight:600">Création complète, coordonnée de bout en bout</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 22px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#0E1011;animation:mre-rise .7s ease-out .38s both">
+          <span style="flex:none;width:20px;height:20px;border-radius:50%;background:#45E3A4;color:#04150E;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">✓</span>
+          <span style="font-size:16px;font-weight:600">12 mois de Company Secretary agréé + adresse enregistrée</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;padding:12px 22px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#0E1011;animation:mre-rise .7s ease-out .46s both">
+          <span style="flex:none;width:20px;height:20px;border-radius:50%;background:#45E3A4;color:#04150E;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700">✓</span>
+          <span style="font-size:16px;font-weight:600">Un interlocuteur francophone, avant, pendant et après la création</span>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:40px;animation:mre-rise .7s ease-out .55s both">
+        <a href="#" class="hk-btn-primary" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;padding:17px 30px;border-radius:14px;background:linear-gradient(180deg,#5CEBB0,#2FCB8C);color:#04150E;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 10px 30px rgba(69,227,164,.22)">Échanger sur mon projet</a>
+        <a href="#offre" class="hk-btn-outline" style="display:flex;align-items:center;padding:17px 30px;border-radius:14px;border:1px solid rgba(255,255,255,.14);background:linear-gradient(180deg,#1A1D1F,#101213);color:#F2F3F1;font-size:14px;font-weight:700;letter-spacing:.06em;text-transform:uppercase">Découvrir le forfait</a>
+      </div>
+
+      <div style="margin-top:26px;font-size:13.5px;color:rgba(242,243,241,.46);animation:mre-rise .7s ease-out .65s both">
+        Dossier validé avant démarrage &nbsp;•&nbsp; Interlocuteur francophone &nbsp;•&nbsp; Suivi WhatsApp
+      </div>
+
+      <aside style="width:100%;max-width:940px;margin-top:56px;padding:26px 30px;border:1px solid rgba(255,255,255,.1);border-radius:24px;background:linear-gradient(180deg,#131618,#0B0C0D);text-align:left;animation:mre-rise .8s ease-out .75s both">
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.08)">
+          <div style="display:flex;align-items:baseline;gap:14px">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:rgba(242,243,241,.5)">FORFAIT HK 360</span>
+            <span style="font-family:'Instrument Serif',Georgia,serif;font-size:40px;line-height:1;color:#45E3A4">2 200 €</span>
+          </div>
+          <span style="font-size:13.5px;color:rgba(242,243,241,.5)">Nous validons d’abord votre projet et votre situation avant de démarrer votre dossier.</span>
+        </div>
+        <div class="hk-grid-4" style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px 24px;margin-top:20px;font-size:14.5px;color:rgba(242,243,241,.78)">
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Création complète</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>12 mois Company Secretary</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>12 mois adresse enregistrée</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Ouverture de compte</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Conformité première année</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Conciergerie administrative</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Interlocuteur francophone</div>
+          <div style="display:flex;gap:9px"><span style="color:#45E3A4">—</span>Digital Privileges</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <div style="overflow:hidden;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.07);background:#0B0C0D">
+    <div style="display:flex;width:max-content;animation:mre-marquee 26s linear infinite">
+      <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:rgba(242,243,241,.42);white-space:nowrap">
+        <span>VOUS ENTREPRENEZ. ON STRUCTURE TOUT LE RESTE.</span><span style="color:#45E3A4">✦</span>
+        <span>0 ZONE GRISE.</span><span style="color:#45E3A4">✦</span>
+        <span>UNE SOCIÉTÉ. UN INTERLOCUTEUR. UNE PRISE EN CHARGE 360°.</span><span style="color:#45E3A4">✦</span>
+        <span>UN DOSSIER BANCAIRE, ÇA NE SE TENTE PAS. ÇA SE PRÉPARE.</span><span style="color:#45E3A4">✦</span>
+      </div>
+      <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:rgba(242,243,241,.42);white-space:nowrap">
+        <span>VOUS ENTREPRENEZ. ON STRUCTURE TOUT LE RESTE.</span><span style="color:#45E3A4">✦</span>
+        <span>0 ZONE GRISE.</span><span style="color:#45E3A4">✦</span>
+        <span>UNE SOCIÉTÉ. UN INTERLOCUTEUR. UNE PRISE EN CHARGE 360°.</span><span style="color:#45E3A4">✦</span>
+        <span>UN DOSSIER BANCAIRE, ÇA NE SE TENTE PAS. ÇA SE PRÉPARE.</span><span style="color:#45E3A4">✦</span>
+      </div>
     </div>
   </div>
-</header>
 
-<div class="mobile-menu" id="mobile-menu" data-mobile-menu>
-  <div class="mobile-menu-header">
-    <span class="brand-name">MB AFFAIRES</span>
-    <button class="mobile-menu-close" data-mobile-close aria-label="Fermer le menu">×</button>
+  <section class="hk-sec" style="padding:34px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div class="hk-stats" data-reveal="1" data-reveal-stagger="1" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+      <div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38px;line-height:1;color:#45E3A4">2 200 €</div>
+        <div style="margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(242,243,241,.5)">FORFAIT UNIQUE</div>
+      </div>
+      <div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38px;line-height:1">12 mois</div>
+        <div style="margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(242,243,241,.5)">COMPANY SECRETARY</div>
+      </div>
+      <div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38px;line-height:1">12 mois</div>
+        <div style="margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(242,243,241,.5)">ADRESSE ENREGISTRÉE</div>
+      </div>
+      <div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:38px;line-height:1">360°</div>
+        <div style="margin-top:7px;font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(242,243,241,.5)">UN SEUL INTERLOCUTEUR</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div class="hk-grid-2" data-reveal="1" data-reveal-stagger="1" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">POURQUOI HONG KONG</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+          Une place d’affaires ouverte,<br /><em style="color:rgba(242,243,241,.5)">lisible et connectée à l’Asie.</em>
+        </h2>
+        <p style="margin:22px 0 0;font-size:17px;color:rgba(242,243,241,.6);text-wrap:pretty">
+          Hong Kong n’est pas une adresse de façade. C’est une juridiction de common law, transparente, dotée d’un régime fiscal territorial et d’une administration rapide. C’est aussi une juridiction exigeante : ce qui s’y crée vite doit s’y tenir proprement.
+        </p>
+      </div>
+      <div class="hk-grid-3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden">
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">FISCALITÉ TERRITORIALE</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">8,25 % sur les 2 premiers millions HKD de bénéfices imposables, 16,5 % au-delà. Seuls les bénéfices de source hongkongaise sont imposés.</p>
+        </div>
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">PAS DE TVA</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">Ni TVA, ni impôt sur les plus-values, ni retenue à la source sur dividendes. Une comptabilité nettement plus simple à tenir.</p>
+        </div>
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">100 % À DISTANCE</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">Constitution sans déplacement. Directeur et actionnaire de toute nationalité, résidents ou non-résidents.</p>
+        </div>
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">PAS DE CAPITAL MINIMUM</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">Capital social libre. La structure s’adapte à votre projet, pas l’inverse.</p>
+        </div>
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">PORTE D’ENTRÉE ASIE</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">Chine continentale, ASEAN, sourcing, logistique et paiements internationaux depuis une seule entité.</p>
+        </div>
+        <div style="padding:22px;background:#0B0C0D">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.16em;color:#45E3A4">CADRE PRÉVISIBLE</div>
+          <p style="margin:10px 0 0;font-size:14.5px;line-height:1.6;color:rgba(242,243,241,.72)">Droit des contrats de common law, arbitrage international reconnu, dollar de Hong Kong arrimé au dollar américain.</p>
+        </div>
+        <div style="grid-column:1 / -1;padding:22px;background:#101214;font-family:'Instrument Serif',Georgia,serif;font-size:19px;color:#45E3A4">
+          Cadrage — une société à Hong Kong ne vous dispense d’aucune de vos obligations en France. Nous créons des structures réelles, déclarables et conformes — jamais des montages. C’est aussi ce qui les rend bancables.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div class="hk-grid-2" data-reveal="1" data-reveal-stagger="1" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">LE VRAI PROBLÈME</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+          Créer la société est rapide.<br /><em style="color:rgba(242,243,241,.5)">C’est tout le reste qui coince.</em>
+        </h2>
+        <p style="margin:22px 0 0;font-size:17px;color:rgba(242,243,241,.6);text-wrap:pretty">
+          À Hong Kong, l’immatriculation prend quelques jours. Ce qui prend des mois, c’est de comprendre ce qu’on vous demande ensuite : en anglais, sur des fuseaux opposés, avec des interlocuteurs qui ne vous expliqueront rien.
+        </p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.08);border-radius:16px;overflow:hidden">
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Choisir la bonne structure et la bonne répartition du capital, dès le départ.</div>
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Comprendre le rôle réel du Company Secretary — obligatoire, pas optionnel.</div>
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Savoir qu’une adresse ne suffit pas : le courrier officiel doit être reçu, lu et traité.</div>
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Préparer un dossier bancaire qui passe le filtre KYC dès la première présentation.</div>
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Distinguer taux réduit, exonération offshore et réalité opérationnelle de votre activité.</div>
+        <div style="padding:22px;background:#0B0C0D;font-size:15.5px;color:rgba(242,243,241,.82)">Tenir le calendrier : Annual Return, renouvellement du Business Registration, audit annuel, déclaration fiscale.</div>
+        <div style="grid-column:1 / -1;padding:22px;background:#101214;font-family:'Instrument Serif',Georgia,serif;font-size:21px;color:#45E3A4">
+          Et, une fois la société créée, se demander encore : « Maintenant, je fais quoi ? »
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hk-sec" style="padding:0 40px 88px">
+    <div style="max-width:1240px;margin:0 auto;padding:26px 28px;border:1px solid rgba(255,255,255,.08);border-radius:18px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+      <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px">« J’ai une question sur ma société à Hong Kong. »</div>
+      <p style="margin:0;max-width:520px;font-size:15px;color:rgba(242,243,241,.58)">Votre prochain réflexe doit être MB Affaires.</p>
+    </div>
   </div>
-  <div class="mobile-menu-body">
-    <span class="mobile-menu-eyebrow">HK 360</span>
-    <a href="#offre" class="mobile-link" data-mobile-close>L’offre</a>
-    <a href="#conciergerie" class="mobile-link" data-mobile-close>Conciergerie administrative</a>
-    <a href="#experience" class="mobile-link" data-mobile-close>Expérience client</a>
-    <a href="#parcours" class="mobile-link" data-mobile-close>Parcours</a>
-    <a href="#privileges" class="mobile-link" data-mobile-close>HK 360 Privileges</a>
-    <a href="#tarif" class="mobile-link" data-mobile-close>2 200 € — Forfait</a>
-    <a href="#" class="mobile-cta" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer">Échanger sur mon projet</a>
+
+  <section id="offre" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07);background:#0A0B0C">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:32px">
+        <div style="max-width:660px">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">L’OFFRE</div>
+          <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+            HK 360 <em style="color:rgba(242,243,241,.5)">Private Business Setup</em>
+          </h2>
+        </div>
+        <p style="max-width:420px;margin:0;font-size:16px;color:rgba(242,243,241,.6);text-wrap:pretty">
+          Une prise en charge complète pour créer, installer et accompagner votre société à Hong Kong.
+        </p>
+      </div>
+
+      <div class="hk-grid-2x2" data-reveal="1" data-reveal-stagger="1" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px">
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">01</div>
+            <div style="width:8px;height:8px;border-radius:50%;border:1px solid rgba(69,227,164,.45)"></div>
+          </div>
+          <h3 style="margin:16px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Création &amp; structuration</h3>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;font-size:13.5px">
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Vérification et réservation du nom</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Constitution de la Private Limited Company</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Certificate of Incorporation</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Business Registration Certificate</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Articles of Association</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Structure du capital</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Directeurs &amp; actionnaires</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Company Secretary agréé — 12 mois</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Significant Controllers Register</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Kit corporate</span>
+            <span style="padding:6px 11px;border:1px solid rgba(255,255,255,.1);border-radius:999px;color:rgba(242,243,241,.75)">Résolutions de constitution</span>
+          </div>
+          <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-size:14.5px;color:rgba(242,243,241,.5)">Coordination complète du processus de constitution.</p>
+        </div>
+
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">02</div>
+            <div style="width:8px;height:8px;border-radius:50%;border:1px solid rgba(69,227,164,.45)"></div>
+          </div>
+          <h3 style="margin:16px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Votre adresse à Hong Kong</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:18px;font-size:15px;color:rgba(242,243,241,.72)">
+            <div>12 mois de domiciliation inclus</div>
+            <div>Adresse professionnelle à Hong Kong</div>
+            <div>Registered Office conforme au Companies Registry</div>
+            <div>Réception, tri et numérisation du courrier officiel</div>
+            <div>Traitement des correspondances IRD et Companies Registry</div>
+            <div>Justificatifs d’adresse pour banque et partenaires</div>
+          </div>
+          <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-size:14.5px;color:rgba(242,243,241,.5)">Votre société démarre avec une présence traitée, pas une boîte aux lettres oubliée.</p>
+        </div>
+
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">03</div>
+            <div style="width:8px;height:8px;border-radius:50%;border:1px solid rgba(69,227,164,.45)"></div>
+          </div>
+          <h3 style="margin:16px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Compte bancaire &amp; conformité</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:18px;font-size:15px;color:rgba(242,243,241,.72)">
+            <div>Préparation du dossier d’ouverture de compte</div>
+            <div>Dossier d’activité et justificatifs commerciaux</div>
+            <div>Présentation KYC et éléments de substance</div>
+            <div>Calendrier de conformité de la première année</div>
+            <div>Suivi de l’Annual Return (NAR1)</div>
+            <div>Renouvellement du Business Registration</div>
+            <div>Cadrage de l’audit annuel et de la déclaration fiscale (PTR)</div>
+          </div>
+          <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-size:14.5px;color:rgba(242,243,241,.5)">Transparence : la décision d’ouverture appartient à l’établissement bancaire. Nous préparons, présentons et défendons votre dossier.</p>
+        </div>
+
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">04</div>
+            <div style="width:8px;height:8px;border-radius:50%;border:1px solid rgba(69,227,164,.45)"></div>
+          </div>
+          <h3 style="margin:16px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:27px;line-height:1.15">Accompagnement francophone</h3>
+          <div style="display:flex;flex-direction:column;gap:9px;margin-top:18px;font-size:15px;color:rgba(242,243,241,.72)">
+            <div>Un interlocuteur MB Affaires dédié, en français</div>
+            <div>Échanges à distance, aux horaires européens</div>
+            <div>Traduction et explication des documents anglophones</div>
+            <div>Assistance avant, pendant et après la constitution</div>
+            <div>Continuité après l’immatriculation</div>
+            <div>Orientation dès qu’une nouvelle démarche apparaît</div>
+          </div>
+          <p style="margin:20px 0 0;padding-top:16px;border-top:1px solid rgba(255,255,255,.07);font-size:14.5px;color:rgba(242,243,241,.5)">Notre mission ne s’arrête pas le jour où votre société est immatriculée.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="conciergerie" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div class="hk-grid-2" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start">
+      <div style="position:sticky;top:100px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">CONCIERGERIE ADMINISTRATIVE</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+          Un document ? Une démarche ?<br /><em style="color:#45E3A4">Vous avez quelqu’un.</em>
+        </h2>
+        <p style="margin:22px 0 0;font-size:17px;color:rgba(242,243,241,.6);text-wrap:pretty">
+          HK 360 intègre une véritable conciergerie administrative, pour vous éviter de perdre du temps à décoder un système, chercher le bon interlocuteur ou refaire trois fois le même dossier.
+        </p>
+        <a href="#" class="hk-pill-outline" data-wa data-wa-msg="concierge" target="_blank" rel="noopener noreferrer" style="display:inline-flex;margin-top:28px;padding:14px 24px;border-radius:999px;border:1px solid rgba(69,227,164,.45);color:#45E3A4;font-size:14.5px;font-weight:500">Expliquer mon besoin →</a>
+      </div>
+      <div data-reveal="1" data-reveal-stagger="1" style="display:flex;flex-direction:column">
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">01</span><span style="font-size:16px">Identification de la démarche nécessaire</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">02</span><span style="font-size:16px">Explication claire des documents à fournir</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">03</span><span style="font-size:16px">Préparation et vérification des dossiers</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">04</span><span style="font-size:16px">Résolutions du conseil et procès-verbaux</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">05</span><span style="font-size:16px">Certifications, légalisations, apostilles et traductions</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">06</span><span style="font-size:16px">Coordination avec comptable, auditeur et banque</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">07</span><span style="font-size:16px">Suivi des échéances administratives, relances lorsque nécessaire</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">08</span><span style="font-size:16px">Aide en cas de dossier incomplet ou rejeté</span></div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0"><span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">09</span><span style="font-size:16px">Assistance par WhatsApp, téléphone ou e-mail</span></div>
+        <div style="margin-top:20px;padding:24px;border-radius:18px;background:#101214;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;line-height:1.2">Vous n’avez pas besoin de connaître le système hongkongais. C’est notre rôle.</div>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.58)">Vous nous expliquez le besoin. Nous identifions le chemin le plus simple et le plus propre pour le traiter.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07);background:#0A0B0C">
+    <div class="hk-grid-2" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:start">
+      <div style="position:sticky;top:100px">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">EXPÉRIENCE CLIENT</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+          Un message : « J’ai besoin de ça. »<br /><em style="color:rgba(242,243,241,.5)">Puis notre équipe prend le relais.</em>
+        </h2>
+      </div>
+      <div data-reveal="1" data-reveal-stagger="1" style="display:flex;flex-direction:column">
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">01</span>
+          <div><div style="font-size:16px;font-weight:600">Nous comprenons la demande</div><p style="margin:6px 0 0;font-size:14.5px;color:rgba(242,243,241,.58)">Vous nous envoyez ce dont vous avez besoin, même sans connaître le nom exact de la procédure.</p></div>
+        </div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">02</span>
+          <div><div style="font-size:16px;font-weight:600">Nous identifions la procédure</div><p style="margin:6px 0 0;font-size:14.5px;color:rgba(242,243,241,.58)">Nous vérifions les pièces, les délais réels et les autorités ou tiers concernés à Hong Kong.</p></div>
+        </div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">03</span>
+          <div><div style="font-size:16px;font-weight:600">Nous préparons avec vous</div><p style="margin:6px 0 0;font-size:14.5px;color:rgba(242,243,241,.58)">Nous organisons informations et documents pour éviter les allers-retours et les rejets de dossier.</p></div>
+        </div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.07);border-radius:12px;transition:padding-left .35s ease, background .35s ease, color .35s ease">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">04</span>
+          <div><div style="font-size:16px;font-weight:600">Nous coordonnons</div><p style="margin:6px 0 0;font-size:14.5px;color:rgba(242,243,241,.58)">Company Secretary, comptable, auditeur, banque ou professionnel spécifique selon la situation.</p></div>
+        </div>
+        <div class="hk-list-item" style="display:flex;gap:16px;padding:16px 0">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(69,227,164,.7);padding-top:4px">05</span>
+          <div><div style="font-size:16px;font-weight:600">Nous suivons</div><p style="margin:6px 0 0;font-size:14.5px;color:rgba(242,243,241,.58)">Vous savez où en est votre demande et quelle est la prochaine étape. Pendant ce temps, vous continuez votre journée.</p></div>
+        </div>
+        <div style="margin-top:20px;padding:24px;border-radius:18px;background:#101214;border:1px solid rgba(255,255,255,.08)">
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px;line-height:1.2">Le bon interlocuteur, dès le départ.</div>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.58)">Lorsque votre besoin sort de notre cœur de métier — fiscalité française, propriété intellectuelle, droit du travail local — nous ne vous laissons pas chercher seul. Nous vous orientons vers le professionnel adapté et, lorsque cela fait partie de notre accompagnement, nous coordonnons avec lui.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="parcours" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">PARCOURS</div>
+      <h2 style="margin:18px 0 0;max-width:620px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+        Votre implantation <em style="color:rgba(242,243,241,.5)">en 4 étapes.</em>
+      </h2>
+      <div class="hk-grid-4" data-reveal="1" data-reveal-stagger="1" style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px">
+        <div style="padding:26px 24px;border-top:1px solid rgba(69,227,164,.5);background:linear-gradient(180deg,rgba(69,227,164,.07),rgba(8,9,10,0) 60%)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">01</div>
+          <h3 style="margin:14px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:24px">Votre projet</h3>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.62);text-wrap:pretty">Vous nous expliquez votre activité, vos flux, vos marchés et ce que vous voulez mettre en place à Hong Kong. Nous vérifions d’abord que la juridiction correspond réellement à votre situation.</p>
+        </div>
+        <div class="hk-tile" style="padding:26px 24px;border-top:1px solid rgba(255,255,255,.14);transition:transform .5s cubic-bezier(.22,.7,.25,1), border-color .4s, background .5s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(242,243,241,.5)">02</div>
+          <h3 style="margin:14px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:24px">Votre structure</h3>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.62);text-wrap:pretty">Nous préparons et coordonnons la constitution : nom, statuts, capital, directeurs, actionnaires, registres. Vous savez où en est votre dossier et quelle est la prochaine étape.</p>
+        </div>
+        <div class="hk-tile" style="padding:26px 24px;border-top:1px solid rgba(255,255,255,.14);transition:transform .5s cubic-bezier(.22,.7,.25,1), border-color .4s, background .5s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(242,243,241,.5)">03</div>
+          <h3 style="margin:14px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:24px">Votre installation</h3>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.62);text-wrap:pretty">Adresse enregistrée, Company Secretary, registres statutaires et dossier bancaire. Votre société dispose d’une base professionnelle réelle et présentable.</p>
+        </div>
+        <div class="hk-tile" style="padding:26px 24px;border-top:1px solid rgba(255,255,255,.14);transition:transform .5s cubic-bezier(.22,.7,.25,1), border-color .4s, background .5s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(242,243,241,.5)">04</div>
+          <h3 style="margin:14px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:24px">Votre démarrage</h3>
+          <p style="margin:12px 0 0;font-size:15px;color:rgba(242,243,241,.62);text-wrap:pretty">Le calendrier de conformité est posé, le suivi administratif continue et notre équipe reste disponible pour les démarches liées au lancement de votre activité.</p>
+        </div>
+      </div>
+      <div style="margin-top:32px;padding:26px 28px;border:1px solid rgba(255,255,255,.08);border-radius:18px;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:24px">Vous ne recommencez pas de zéro à chaque nouveau besoin.</div>
+        <p style="margin:0;max-width:520px;font-size:15px;color:rgba(242,243,241,.58)">Votre dossier, votre contexte et votre activité sont déjà connus de l’équipe. C’est ce qui crée une vraie continuité.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="privileges" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07);background:#0A0B0C">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">HK 360 PRIVILEGES</div>
+      <h2 style="margin:18px 0 0;max-width:700px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+        Votre société existe. <em style="color:rgba(242,243,241,.5)">Maintenant, il faut qu’elle vende.</em>
+      </h2>
+      <p style="margin:20px 0 0;max-width:660px;font-size:16px;color:rgba(242,243,241,.6)">Les membres HK 360 bénéficient de conditions préférentielles MB Business pour lancer et développer leur nouvelle activité.</p>
+
+      <div class="hk-grid-2x2" data-reveal="1" data-reveal-stagger="1" style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:44px">
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">DIGITAL IDENTITY</div>
+          <p style="margin:14px 0 0;font-size:15.5px;color:rgba(242,243,241,.72)">Identité visuelle, branding et supports professionnels alignés sur un marché international.</p>
+        </div>
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">WEB PRESENCE</div>
+          <p style="margin:14px 0 0;font-size:15.5px;color:rgba(242,243,241,.72)">Site vitrine, landing page ou boutique adaptée à votre activité et à vos marchés cibles.</p>
+        </div>
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">BUSINESS SETUP</div>
+          <p style="margin:14px 0 0;font-size:15.5px;color:rgba(242,243,241,.72)">E-mails professionnels, outils de gestion et solutions d’encaissement international.</p>
+        </div>
+        <div class="hk-card" style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.3), rgba(69,227,164,0) 24%), radial-gradient(75% 55% at 100% 100%, rgba(69,227,164,.22), rgba(69,227,164,0) 26%), radial-gradient(55% 40% at 100% 0%, rgba(123,239,193,.16), rgba(69,227,164,0) 24%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015) 40%, rgba(255,255,255,.035));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.34), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55);transition:transform .55s cubic-bezier(.22,.7,.25,1), box-shadow .55s cubic-bezier(.22,.7,.25,1), border-color .4s">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:#45E3A4">GROWTH</div>
+          <p style="margin:14px 0 0;font-size:15.5px;color:rgba(242,243,241,.72)">Accompagnement marketing et acquisition : publicité, contenu, tunnel de conversion.</p>
+        </div>
+      </div>
+      <p style="margin:28px 0 0;max-width:640px;font-size:15.5px;color:rgba(242,243,241,.55)">Un seul environnement pour passer de la création de société au lancement réel du business.</p>
+    </div>
+  </section>
+
+  <section class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07)">
+    <div style="max-width:1240px;margin:0 auto">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">JUSTIFIER LES 2 200 €</div>
+      <h2 style="margin:18px 0 0;max-width:760px;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(32px,3.4vw,46px);line-height:1.08;letter-spacing:-.015em">
+        Vous ne payez pas une immatriculation.<br /><em style="color:rgba(242,243,241,.5)">Vous payez pour ne pas la rater.</em>
+      </h2>
+      <div class="hk-grid-2" data-reveal="1" data-reveal-stagger="1" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:44px">
+        <div style="padding:30px;border:1px solid rgba(255,255,255,.08);border-radius:20px;background:#0C0D0E">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:rgba(242,243,241,.45)">LA CRÉATION LOW-COST</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;font-size:16px;color:rgba(242,243,241,.55)">
+            <div>Une immatriculation en ligne</div>
+            <div>Un secrétaire minimal, la première année</div>
+            <div>Une adresse, sans traitement du courrier</div>
+            <div>Un dossier bancaire présenté au hasard</div>
+            <div>Des échéances découvertes en recevant la pénalité</div>
+            <div>Une société dormante, mais toujours redevable</div>
+          </div>
+        </div>
+        <div style="position:relative;padding:30px;border:1px solid rgba(69,227,164,.4);border-radius:26px;background:linear-gradient(115deg, rgba(69,227,164,.22), rgba(12,13,14,.9) 34%, rgba(12,13,14,.9) 62%, rgba(69,227,164,.18));background-size:220% auto;animation:mre-sweep 12s linear infinite;backdrop-filter:blur(24px) saturate(170%);-webkit-backdrop-filter:blur(24px) saturate(170%);box-shadow:inset 0 1px 0 rgba(255,255,255,.24), inset 22px 0 44px -34px rgba(69,227,164,.9), inset -22px 0 44px -34px rgba(69,227,164,.9), 0 26px 64px rgba(0,0,0,.5)">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">L’EXPÉRIENCE HK 360</div>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:20px;font-size:16px">
+            <div>Création et structuration pensées pour votre activité</div>
+            <div>Company Secretary agréé et registres tenus</div>
+            <div>Adresse traitée, courrier officiel numérisé</div>
+            <div>Dossier bancaire construit avant d’être présenté</div>
+            <div>Calendrier de conformité anticipé</div>
+            <div>Conciergerie et accompagnement continu</div>
+            <div style="color:#45E3A4">Business &amp; Digital Privileges pour lancer l’activité</div>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.16em;color:rgba(242,243,241,.42)">
+        CRÉATION → STRUCTURATION → ADRESSE → BANQUE → CONFORMITÉ → CONCIERGERIE
+      </div>
+      <p style="margin:28px auto 0;max-width:720px;text-align:center;font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:#45E3A4">À Hong Kong, ce n’est pas la création qui coûte cher. C’est la création mal faite.</p>
+    </div>
+  </section>
+
+  <section class="hk-sec" style="padding:64px 40px 20px;border-bottom:1px solid rgba(255,255,255,.07);text-align:center">
+    <p style="margin:0;font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:rgba(242,243,241,.85)">Sept heures de décalage horaire.<br /><em style="color:#45E3A4;font-style:italic">Zéro décalage dans votre suivi.</em></p>
+  </section>
+
+  <div style="overflow:hidden;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.07);background:#0B0C0D">
+    <div style="display:flex;width:max-content;animation:mre-marquee 30s linear infinite">
+      <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:rgba(242,243,241,.42);white-space:nowrap">
+        <span>PARIS</span><span style="color:#45E3A4">✦</span>
+        <span>LYON</span><span style="color:#45E3A4">✦</span>
+        <span>MARSEILLE</span><span style="color:#45E3A4">✦</span>
+        <span>BORDEAUX</span><span style="color:#45E3A4">✦</span>
+        <span>LILLE</span><span style="color:#45E3A4">✦</span>
+        <span>GENÈVE</span><span style="color:#45E3A4">✦</span>
+        <span>BRUXELLES</span><span style="color:#45E3A4">✦</span>
+      </div>
+      <div style="display:flex;gap:44px;padding-right:44px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;color:rgba(242,243,241,.42);white-space:nowrap">
+        <span>PARIS</span><span style="color:#45E3A4">✦</span>
+        <span>LYON</span><span style="color:#45E3A4">✦</span>
+        <span>MARSEILLE</span><span style="color:#45E3A4">✦</span>
+        <span>BORDEAUX</span><span style="color:#45E3A4">✦</span>
+        <span>LILLE</span><span style="color:#45E3A4">✦</span>
+        <span>GENÈVE</span><span style="color:#45E3A4">✦</span>
+        <span>BRUXELLES</span><span style="color:#45E3A4">✦</span>
+      </div>
+    </div>
+  </div>
+
+  <section id="tarif" class="hk-sec" style="padding:88px 40px;border-bottom:1px solid rgba(255,255,255,.07);background:#0A0B0C">
+    <div class="hk-grid-2" data-reveal="1" data-reveal-stagger="1" style="max-width:1240px;margin:0 auto;display:grid;grid-template-columns:1fr .85fr;gap:64px;align-items:center">
+      <div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">TARIF</div>
+        <h2 style="margin:18px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(36px,4vw,58px);line-height:1.03;letter-spacing:-.02em">
+          HK 360 <em style="color:#45E3A4">2 200 €</em>
+        </h2>
+        <p style="margin:20px 0 0;max-width:520px;font-size:17px;color:rgba(242,243,241,.62)">
+          Forfait d’accompagnement pour la création et l’installation de votre société à Hong Kong. Nous validons d’abord votre projet et votre situation avant de démarrer votre dossier.
+        </p>
+        <p style="margin:14px 0 0;max-width:520px;font-size:12.5px;color:rgba(242,243,241,.4)">
+          Hors forfait : comptabilité courante et audit annuel, renouvellements à partir de la 2<sup>e</sup> année, apostilles, traductions assermentées, notariat, frais bancaires et honoraires de tiers — devis séparé.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:32px">
+          <a href="#" class="hk-tarif-primary" data-wa data-wa-msg="tarif" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;padding:16px 28px;border-radius:999px;background:#45E3A4;color:#04150E;font-size:15px;font-weight:600">Parler de mon projet →</a>
+          <a href="#" class="hk-tarif-outline" data-wa data-wa-msg="tarif" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;padding:16px 28px;border-radius:999px;border:1px solid rgba(255,255,255,.16);color:#F2F3F1;font-size:15px;font-weight:500">Échanger sur WhatsApp</a>
+        </div>
+      </div>
+      <div style="position:relative;padding:30px;border:1px solid rgba(255,255,255,.14);border-radius:26px;background:radial-gradient(75% 55% at 0% 0%, rgba(69,227,164,.28), rgba(69,227,164,0) 25%), radial-gradient(70% 50% at 100% 100%, rgba(69,227,164,.2), rgba(69,227,164,0) 26%), linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%);box-shadow:inset 0 1px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(69,227,164,.32), inset 22px 0 44px -34px rgba(69,227,164,.85), inset -22px 0 44px -34px rgba(69,227,164,.85), 0 26px 64px rgba(0,0,0,.55)">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,.08)">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.2em;color:rgba(242,243,241,.5)">FORFAIT HK 360</span>
+          <span style="font-family:'Instrument Serif',Georgia,serif;font-size:40px;color:#45E3A4">2 200 €</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-top:20px;font-size:15px;color:rgba(242,243,241,.78)">
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>Création complète de la Limited Company</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>12 mois de Company Secretary agréé</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>12 mois d’adresse enregistrée</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>Accompagnement à l’ouverture de compte</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>Conformité de la première année</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>Conciergerie administrative</div>
+          <div style="display:flex;gap:10px"><span style="color:#45E3A4">✓</span>HK 360 Digital Privileges</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="hk-sec" style="padding:96px 40px 72px">
+    <div data-reveal="1" data-reveal-stagger="1" style="max-width:900px;margin:0 auto;text-align:center">
+      <div style="font-family:'JetBrains Mono',monospace;font-size:10.5px;letter-spacing:.2em;color:#45E3A4">RESTONS EN CONTACT</div>
+      <h2 style="margin:20px 0 0;font-family:'Instrument Serif',Georgia,serif;font-weight:400;font-size:clamp(34px,4.2vw,58px);line-height:1.05;letter-spacing:-.02em">
+        Hong Kong peut être votre prochain marché.<br /><em style="color:rgba(242,243,241,.5)">La distance ne doit pas être votre premier obstacle.</em>
+      </h2>
+      <p style="margin:22px auto 0;max-width:640px;font-size:17px;color:rgba(242,243,241,.62);text-wrap:pretty">
+        Vous avez le produit, le client, le fournisseur ou le capital. Ce qu’il vous faut maintenant, c’est une structure claire et quelqu’un sur place pour la tenir.
+      </p>
+      <div style="display:flex;justify-content:center;margin-top:32px">
+        <a href="#" class="hk-cta-lg" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;padding:17px 32px;border-radius:999px;background:#45E3A4;color:#04150E;font-size:15.5px;font-weight:600">Échanger sur WhatsApp</a>
+      </div>
+      <div style="margin-top:20px;font-size:13.5px;color:rgba(242,243,241,.42)">Nous validons d’abord votre projet, votre activité et votre situation avant de démarrer votre dossier.</div>
+    </div>
+  </section>
+
+  <footer style="padding:36px 40px;border-top:1px solid rgba(255,255,255,.07);background:#0A0B0C">
+    <div style="max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:24px;align-items:center;justify-content:space-between">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <span style="font-size:13px;font-weight:600;letter-spacing:.16em">MB AFFAIRES</span>
+        <span style="font-size:13px;color:rgba(242,243,241,.45)">Création • Domiciliation • Conformité • Conciergerie administrative</span>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:22px;font-size:13px;color:rgba(242,243,241,.45)">
+        <a href="/confidentialite/" class="hk-footer-link" style="color:inherit">Politique de confidentialité</a>
+        <a href="/mentions-legales/" class="hk-footer-link" style="color:inherit">Mentions légales</a>
+        <a href="/conditions-generales/" class="hk-footer-link" style="color:inherit">Conditions générales</a>
+        <a href="/cookies/" class="hk-footer-link" style="color:inherit">Politique de cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <div class="mre-sticky" style="position:fixed;bottom:20px;right:20px;z-index:60;display:flex;align-items:center;gap:14px;padding:12px 14px 12px 20px;border:1px solid rgba(69,227,164,.3);border-radius:999px;background:rgba(14,16,17,.92);backdrop-filter:blur(12px)">
+    <span style="font-size:13.5px;color:rgba(242,243,241,.72)">Une démarche à lancer ?</span>
+    <a href="#" class="hk-sticky-btn" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;padding:10px 18px;border-radius:999px;background:#45E3A4;color:#04150E;font-size:13.5px;font-weight:600">WhatsApp</a>
   </div>
 </div>
-
-<section id="top" class="hero">
-  <div class="hero-glow" aria-hidden="true"></div>
-  <div class="hero-grid">
-    <div>
-      <span class="hero-badge" data-reveal>
-        <span class="dot"></span>HK 360 • Private Business Setup — Hong Kong
-      </span>
-      <h1 class="hero-title" data-reveal>Votre société est à Hong Kong.<em>Vous, vous restez où vous êtes.</em></h1>
-      <p class="hero-desc" data-reveal>HK 360 est conçu pour les entrepreneurs et investisseurs basés en France qui veulent une société à Hong Kong sans naviguer seuls dans une juridiction qu’ils ne connaissent pas.</p>
-      <p class="hero-kicker" data-reveal>CRÉATION • DOMICILIATION • COMPTE • CONFORMITÉ • CONCIERGERIE</p>
-      <div class="hero-actions" data-reveal>
-        <a href="#" class="btn btn-glow" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer">Échanger sur mon projet <span class="nudge">→</span></a>
-        <a href="#offre" class="btn btn-outline">Découvrir le forfait</a>
-      </div>
-    </div>
-
-    <div class="pricing-card" data-reveal>
-      <div class="pricing-card-head">
-        <span>FORFAIT HK 360</span>
-        <span class="price">2 200 €</span>
-      </div>
-      <div class="pricing-card-rule"></div>
-      <div class="pricing-card-list">
-        <span>Création complète de votre Limited Company</span>
-        <span>12 mois de Company Secretary agréé</span>
-        <span>12 mois d’adresse enregistrée à Hong Kong</span>
-        <span>Accompagnement à l’ouverture de compte</span>
-        <span>Conformité de la première année</span>
-        <span>Conciergerie administrative</span>
-        <span>Un interlocuteur francophone</span>
-        <span>Accès aux HK 360 Digital Privileges</span>
-      </div>
-      <p class="pricing-card-tagline">Vous entreprenez. On structure tout le reste.</p>
-    </div>
-  </div>
-</section>
-
-<div class="marquee-band marquee-band-tight">
-  <div class="marquee-track marquee-track-reverse">
-    <div class="marquee-set">
-      <span class="quote">Vous avez le projet. Nous sommes votre structure à Hong Kong.</span>
-      <span class="sep"></span>
-      <span class="quote">Vous entreprenez. On structure tout le reste.</span>
-      <span class="sep"></span>
-      <span class="quote">0 zone grise.</span>
-      <span class="sep"></span>
-      <span class="quote">Une société. Un interlocuteur. Une prise en charge 360°.</span>
-      <span class="sep"></span>
-      <span class="quote">Un dossier bancaire, ça ne se tente pas. Ça se prépare.</span>
-      <span class="sep"></span>
-    </div>
-    <div class="marquee-set" aria-hidden="true">
-      <span class="quote">Vous avez le projet. Nous sommes votre structure à Hong Kong.</span>
-      <span class="sep"></span>
-      <span class="quote">Vous entreprenez. On structure tout le reste.</span>
-      <span class="sep"></span>
-      <span class="quote">0 zone grise.</span>
-      <span class="sep"></span>
-      <span class="quote">Une société. Un interlocuteur. Une prise en charge 360°.</span>
-      <span class="sep"></span>
-      <span class="quote">Un dossier bancaire, ça ne se tente pas. Ça se prépare.</span>
-      <span class="sep"></span>
-    </div>
-  </div>
-</div>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">Pourquoi Hong Kong</span>
-      <h2 class="section-title">Une place d’affaires ouverte,<em>lisible et connectée à l’Asie.</em></h2>
-      <p class="lead-desc" style="max-width:700px;">Hong Kong n’est pas une adresse de façade. C’est une juridiction de common law, transparente, dotée d’un régime fiscal territorial et d’une administration rapide. C’est aussi une juridiction exigeante : ce qui s’y crée vite doit s’y tenir proprement.</p>
-    </div>
-    <div class="facts-grid" data-reveal data-stagger>
-      <div class="fact-card">
-        <span class="fact-label">FISCALITÉ TERRITORIALE</span>
-        <p>8,25 % sur les 2 premiers millions HKD de bénéfices imposables, 16,5 % au-delà. Seuls les bénéfices de source hongkongaise sont imposés.</p>
-      </div>
-      <div class="fact-card">
-        <span class="fact-label">PAS DE TVA</span>
-        <p>Ni TVA, ni impôt sur les plus-values, ni retenue à la source sur dividendes. Une comptabilité nettement plus simple à tenir.</p>
-      </div>
-      <div class="fact-card">
-        <span class="fact-label">100 % À DISTANCE</span>
-        <p>Constitution sans déplacement. Directeur et actionnaire de toute nationalité, résidents ou non-résidents.</p>
-      </div>
-      <div class="fact-card">
-        <span class="fact-label">PAS DE CAPITAL MINIMUM</span>
-        <p>Capital social libre. La structure s’adapte à votre projet, pas l’inverse.</p>
-      </div>
-      <div class="fact-card">
-        <span class="fact-label">PORTE D’ENTRÉE ASIE</span>
-        <p>Chine continentale, ASEAN, sourcing, logistique et paiements internationaux depuis une seule entité.</p>
-      </div>
-      <div class="fact-card">
-        <span class="fact-label">CADRE PRÉVISIBLE</span>
-        <p>Droit des contrats de common law, arbitrage international reconnu, dollar de Hong Kong arrimé au dollar américain.</p>
-      </div>
-    </div>
-    <div class="pain-list" data-reveal style="margin-top:30px;">
-      <div class="pain-item highlight"><strong style="color:var(--accent); margin-right:8px;">Cadrage —</strong>Une société à Hong Kong ne vous dispense d’aucune de vos obligations en France. Nous créons des structures réelles, déclarables et conformes — jamais des montages. C’est aussi ce qui les rend bancables.</div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container split-sticky">
-    <div class="split-sticky-head" data-reveal>
-      <span class="eyebrow-pill">Le vrai problème</span>
-      <h2 class="section-title">Créer la société est rapide.<em>C’est tout le reste qui coince.</em></h2>
-      <p class="lead-desc" style="max-width:480px;">À Hong Kong, l’immatriculation prend quelques jours. Ce qui prend des mois, c’est de comprendre ce qu’on vous demande ensuite : en anglais, sur des fuseaux opposés, avec des interlocuteurs qui ne vous expliqueront rien.</p>
-    </div>
-    <div class="pain-list" data-reveal data-stagger data-diag="r">
-      <div class="pain-item">Choisir la bonne structure et la bonne répartition du capital, dès le départ.</div>
-      <div class="pain-item">Comprendre le rôle réel du Company Secretary — obligatoire, pas optionnel.</div>
-      <div class="pain-item">Savoir qu’une adresse ne suffit pas : le courrier officiel doit être reçu, lu et traité.</div>
-      <div class="pain-item">Préparer un dossier bancaire qui passe le filtre KYC dès la première présentation.</div>
-      <div class="pain-item">Distinguer taux réduit, exonération offshore et réalité opérationnelle de votre activité.</div>
-      <div class="pain-item">Tenir le calendrier : Annual Return, renouvellement du Business Registration, audit annuel, déclaration fiscale.</div>
-      <div class="pain-item highlight">Et, une fois la société créée, se demander encore : « Maintenant, je fais quoi ? »</div>
-    </div>
-  </div>
-</section>
-
-<section class="section" style="padding-top:70px; padding-bottom:70px;">
-  <div class="container">
-    <div class="glow-card" data-reveal>
-      <span class="eyebrow-pill">Pourquoi HK 360</span>
-      <h2 class="section-title">0 zone grise.<em>Vous pilotez votre business. Nous tenons la structure.</em></h2>
-      <p class="lead-desc" style="max-width:680px;">Notre accompagnement ne s’arrête pas au Certificate of Incorporation. Le vrai service commence après : savoir quoi déposer, quand, auprès de qui — et ne jamais découvrir une obligation en recevant une pénalité.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container split-sticky">
-    <div data-reveal>
-      <span class="eyebrow-pill">Positionnement</span>
-      <h2 class="section-title" style="text-align:left;">Plus qu’une immatriculation.<em>Votre base opérationnelle en Asie.</em></h2>
-      <p class="lead-desc" style="margin-left:0; max-width:480px; text-align:left;">Avec HK 360, vous ne repartez pas simplement avec un certificat à encadrer.</p>
-      <p class="pull-quote">« J’ai une question sur ma société à Hong Kong. » Votre prochain réflexe doit être MB Affaires.</p>
-    </div>
-    <div class="glass-card" data-reveal data-drift="34">
-      <span class="glass-card-label">VOUS REPARTEZ AVEC</span>
-      <div class="check-list">
-        <span>Une société immatriculée et opérationnelle</span>
-        <span>Un Company Secretary agréé</span>
-        <span>Une adresse professionnelle à Hong Kong</span>
-        <span>Un dossier bancaire préparé et présenté</span>
-        <span>Un calendrier de conformité tenu</span>
-        <span>Une équipe francophone joignable après la création</span>
-      </div>
-      <div class="glass-card-rule"></div>
-      <p class="body-text">Une société. Un interlocuteur. Une prise en charge 360°. Ce que le client achète n’est pas une liste de documents. Il achète la certitude que sa structure reste conforme, crédible et utilisable — mois après mois, sans qu’il ait à y penser.</p>
-    </div>
-  </div>
-</section>
-
-<section id="offre" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">L’offre</span>
-      <h2 class="section-title">HK 360<em>Private Business Setup</em></h2>
-      <p class="lead-desc">Une prise en charge complète pour créer, installer et accompagner votre société à Hong Kong.</p>
-    </div>
-
-    <div class="offer-grid">
-      <div class="offer-card" data-reveal data-diag="l">
-        <div class="offer-card-head">
-          <div class="offer-number">01</div>
-          <h3>Création &amp; structuration</h3>
-        </div>
-        <div class="offer-chips">
-          <span>Vérification et réservation du nom</span>
-          <span>Constitution de la Private Limited Company</span>
-          <span>Certificate of Incorporation</span>
-          <span>Business Registration Certificate</span>
-          <span>Articles of Association</span>
-          <span>Structure du capital</span>
-          <span>Directeurs &amp; actionnaires</span>
-          <span>Company Secretary agréé — 12 mois</span>
-          <span>Significant Controllers Register</span>
-          <span>Kit corporate</span>
-          <span>Résolutions de constitution</span>
-          <span>Coordination complète du processus</span>
-        </div>
-      </div>
-
-      <div class="offer-card" data-reveal data-diag="r">
-        <div class="offer-card-head">
-          <div class="offer-number">02</div>
-          <h3>Votre adresse à Hong Kong</h3>
-        </div>
-        <div class="check-list">
-          <span>12 mois de domiciliation inclus</span>
-          <span>Adresse professionnelle à Hong Kong</span>
-          <span>Registered Office conforme au Companies Registry</span>
-          <span>Réception, tri et numérisation du courrier officiel</span>
-          <span>Traitement des correspondances IRD et Companies Registry</span>
-          <span>Justificatifs d’adresse pour banque et partenaires</span>
-        </div>
-        <p class="body-text">Votre société démarre avec une présence traitée, pas une boîte aux lettres oubliée.</p>
-      </div>
-
-      <div class="offer-card" data-reveal data-diag="l">
-        <div class="offer-card-head">
-          <div class="offer-number">03</div>
-          <h3>Compte bancaire &amp; conformité</h3>
-        </div>
-        <div class="check-list">
-          <span>Préparation du dossier d’ouverture de compte</span>
-          <span>Dossier d’activité et justificatifs commerciaux</span>
-          <span>Présentation KYC et éléments de substance</span>
-          <span>Introduction auprès de nos partenaires</span>
-          <span>Calendrier de conformité de la première année</span>
-          <span>Suivi de l’Annual Return (NAR1)</span>
-          <span>Renouvellement du Business Registration</span>
-          <span>Cadrage de l’audit annuel et de la déclaration fiscale (PTR)</span>
-        </div>
-        <p class="body-text" style="font-size:13.5px;">Transparence : la décision d’ouverture appartient à l’établissement bancaire. Nous préparons, présentons et défendons votre dossier — nous ne promettons pas une décision qui ne nous appartient pas.</p>
-      </div>
-
-      <div class="offer-card" data-reveal data-diag="r">
-        <div class="offer-card-head">
-          <div class="offer-number">04</div>
-          <h3>Accompagnement francophone</h3>
-        </div>
-        <div class="check-list">
-          <span>Un interlocuteur MB Affaires dédié, en français</span>
-          <span>Échanges à distance, aux horaires européens</span>
-          <span>Traduction et explication des documents anglophones</span>
-          <span>Assistance avant, pendant et après la constitution</span>
-          <span>Continuité après l’immatriculation</span>
-          <span>Orientation dès qu’une nouvelle démarche apparaît</span>
-        </div>
-      </div>
-    </div>
-
-    <p class="pull-quote" data-reveal style="margin:44px auto 0; max-width:820px; text-align:center;">Notre mission ne s’arrête pas le jour où votre société est immatriculée.</p>
-    <p class="lead-desc" data-reveal style="max-width:640px;">C’est cette continuité qui transforme une prestation administrative en accompagnement 360°.</p>
-  </div>
-</section>
-
-<section id="conciergerie" class="section">
-  <div class="container split-sticky narrow-left">
-    <div class="split-sticky-head" data-reveal>
-      <span class="eyebrow-pill">Conciergerie administrative</span>
-      <h2 class="section-title">Un document ? Une démarche ?<em>Une question ? Vous avez quelqu’un.</em></h2>
-      <p class="lead-desc" style="max-width:460px;">HK 360 intègre une véritable conciergerie administrative, pour vous éviter de perdre du temps à décoder un système, chercher le bon interlocuteur ou refaire trois fois le même dossier.</p>
-      <a href="#" class="btn btn-outline" style="margin-top:32px;" data-wa data-wa-msg="concierge" target="_blank" rel="noopener noreferrer">Expliquer mon besoin <span class="nudge">→</span></a>
-    </div>
-    <div class="concierge-grid" data-reveal>
-      <div class="concierge-item">Identification de la démarche nécessaire</div>
-      <div class="concierge-item">Explication claire des documents à fournir</div>
-      <div class="concierge-item">Préparation et vérification des dossiers</div>
-      <div class="concierge-item">Résolutions du conseil et procès-verbaux</div>
-      <div class="concierge-item">Certifications, légalisations, apostilles et traductions</div>
-      <div class="concierge-item">Coordination avec comptable, auditeur et banque</div>
-      <div class="concierge-item">Suivi des échéances administratives</div>
-      <div class="concierge-item">Relances lorsque nécessaire</div>
-      <div class="concierge-item">Aide en cas de dossier incomplet ou rejeté</div>
-      <div class="concierge-item highlight">Assistance par WhatsApp, téléphone ou e-mail</div>
-      <div class="concierge-note">
-        <p>Vous n’avez pas besoin de connaître le système hongkongais. C’est notre rôle.</p>
-        <p>Vous nous expliquez le besoin. Nous identifions le chemin le plus simple et le plus propre pour le traiter.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">Expérience client</span>
-      <h2 class="section-title">Un message : « J’ai besoin de ça. »<em>Puis notre équipe prend le relais.</em></h2>
-    </div>
-    <div class="sticky-list">
-      <div class="sticky-card" data-reveal>
-        <div class="step-number-circle">01</div>
-        <div>
-          <h3>Nous comprenons la demande</h3>
-          <p>Vous nous envoyez ce dont vous avez besoin, même sans connaître le nom exact de la procédure.</p>
-        </div>
-      </div>
-      <div class="sticky-card" data-reveal>
-        <div class="step-number-circle">02</div>
-        <div>
-          <h3>Nous identifions la procédure</h3>
-          <p>Nous vérifions les pièces, les délais réels et les autorités ou tiers concernés à Hong Kong.</p>
-        </div>
-      </div>
-      <div class="sticky-card" data-reveal>
-        <div class="step-number-circle">03</div>
-        <div>
-          <h3>Nous préparons avec vous</h3>
-          <p>Nous organisons informations et documents pour éviter les allers-retours et les rejets de dossier.</p>
-        </div>
-      </div>
-      <div class="sticky-card" data-reveal>
-        <div class="step-number-circle">04</div>
-        <div>
-          <h3>Nous coordonnons</h3>
-          <p>Company Secretary, comptable, auditeur, banque ou professionnel spécifique selon la situation.</p>
-        </div>
-      </div>
-      <div class="sticky-card highlight" data-reveal>
-        <div class="step-number-circle">05</div>
-        <div>
-          <h3>Nous suivons</h3>
-          <p>Vous savez où en est votre demande et quelle est la prochaine étape. Pendant ce temps, vous continuez votre journée.</p>
-        </div>
-      </div>
-    </div>
-    <div class="note-card" data-reveal>
-      <span>LE BON INTERLOCUTEUR, DÈS LE DÉPART.</span>
-      <p>Lorsque votre besoin sort de notre cœur de métier — fiscalité française, propriété intellectuelle, droit du travail local — nous ne vous laissons pas chercher seul. Nous vous orientons vers le professionnel adapté et, lorsque cela fait partie de notre accompagnement, nous coordonnons avec lui.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">Justifier les 2 200 €</span>
-      <h2 class="section-title">Vous ne payez pas une immatriculation.<em>Vous payez pour ne pas la rater.</em></h2>
-      <p class="lead-desc" style="max-width:700px;">Le plus difficile n’est pas : « Comment créer une société à Hong Kong ? » C’est : « Comment la rendre bancable, conforme et utile depuis la France ? »</p>
-    </div>
-    <div class="comparison-grid">
-      <div class="comparison-card classic" data-reveal data-drift="-30">
-        <span class="glass-card-label">LA CRÉATION LOW-COST</span>
-        <div class="check-list">
-          <span>Une immatriculation en ligne</span>
-          <span>Un secrétaire minimal, la première année</span>
-          <span>Une adresse, sans traitement du courrier</span>
-          <span>Un dossier bancaire présenté au hasard</span>
-          <span>Des échéances découvertes en recevant la pénalité</span>
-          <span>Une société dormante, mais toujours redevable</span>
-        </div>
-      </div>
-      <div class="comparison-card featured" data-reveal data-drift="30">
-        <span class="glass-card-label">L’EXPÉRIENCE HK 360</span>
-        <div class="check-list">
-          <span>Création et structuration pensées pour votre activité</span>
-          <span>Company Secretary agréé et registres tenus</span>
-          <span>Adresse traitée, courrier officiel numérisé</span>
-          <span>Dossier bancaire construit avant d’être présenté</span>
-          <span>Calendrier de conformité anticipé</span>
-          <span>Conciergerie et accompagnement continu</span>
-          <span>Business &amp; Digital Privileges pour lancer l’activité</span>
-        </div>
-      </div>
-    </div>
-    <p class="pull-quote" data-reveal style="margin:34px auto 0; max-width:760px; text-align:center;">À Hong Kong, ce n’est pas la création qui coûte cher. C’est la création mal faite.</p>
-  </div>
-</section>
-
-<section class="section">
-  <div class="center-copy" data-reveal>
-    <h2 class="section-title">Vous n’avez pas besoin de déménager<em>pour être présent en Asie.</em></h2>
-    <p class="lead-desc" style="max-width:700px;">La distance ne devrait pas être ce qui vous fait renoncer à un marché. Avec HK 360, vous disposez d’un point de contact francophone pour mettre en place votre activité — avant la constitution, pendant, et longtemps après.</p>
-    <p class="pull-quote" style="margin:30px auto 0; text-align:center;">Sept heures de décalage horaire.<br>Zéro décalage dans votre suivi.</p>
-  </div>
-
-  <div class="marquee-band marquee-band-cities">
-    <div class="marquee-track marquee-track-slow">
-      <div class="marquee-set">
-        <span class="city">PARIS</span><span class="sep"></span>
-        <span class="city">LYON</span><span class="sep"></span>
-        <span class="city">MARSEILLE</span><span class="sep"></span>
-        <span class="city">BORDEAUX</span><span class="sep"></span>
-        <span class="city">LILLE</span><span class="sep"></span>
-        <span class="city">GENÈVE</span><span class="sep"></span>
-        <span class="city">BRUXELLES</span><span class="sep"></span>
-        <span class="city">AILLEURS</span><span class="sep"></span>
-      </div>
-      <div class="marquee-set" aria-hidden="true">
-        <span class="city">PARIS</span><span class="sep"></span>
-        <span class="city">LYON</span><span class="sep"></span>
-        <span class="city">MARSEILLE</span><span class="sep"></span>
-        <span class="city">BORDEAUX</span><span class="sep"></span>
-        <span class="city">LILLE</span><span class="sep"></span>
-        <span class="city">GENÈVE</span><span class="sep"></span>
-        <span class="city">BRUXELLES</span><span class="sep"></span>
-        <span class="city">AILLEURS</span><span class="sep"></span>
-      </div>
-    </div>
-  </div>
-
-  <div class="split-even">
-    <div class="feature-card" data-reveal data-diag="l">
-      <span class="label">VOTRE TEMPS</span>
-      <h3>Allez à Hong Kong pour rencontrer vos partenaires. Pas pour comprendre un formulaire.</h3>
-      <p>Votre présence sur place doit servir à vos fournisseurs, vos clients, vos usines, vos investisseurs. Pas à découvrir quelle pièce manque au dossier.</p>
-    </div>
-    <div class="quote-card" data-reveal data-diag="r">
-      <p>Le luxe, ce n’est pas de ne jamais avoir de formalités. C’est de ne plus avoir à les comprendre seul.</p>
-    </div>
-  </div>
-</section>
-
-<section id="parcours" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">Parcours</span>
-      <h2 class="section-title">Votre implantation<em>en 4 étapes.</em></h2>
-    </div>
-    <div class="grid-4" data-reveal data-stagger data-diag="l">
-      <div class="step-tile">
-        <span class="step-tile-number">01</span>
-        <h3>Votre projet</h3>
-        <p>Vous nous expliquez votre activité, vos flux, vos marchés et ce que vous voulez mettre en place à Hong Kong. Nous vérifions d’abord que la juridiction correspond réellement à votre situation.</p>
-      </div>
-      <div class="step-tile">
-        <span class="step-tile-number">02</span>
-        <h3>Votre structure</h3>
-        <p>Nous préparons et coordonnons la constitution : nom, statuts, capital, directeurs, actionnaires, registres. Vous savez ce dont nous avons besoin, où en est votre dossier et quelle est la prochaine étape.</p>
-      </div>
-      <div class="step-tile">
-        <span class="step-tile-number">03</span>
-        <h3>Votre installation</h3>
-        <p>Adresse enregistrée, Company Secretary, registres statutaires et dossier bancaire. Votre société dispose d’une base professionnelle réelle et présentable.</p>
-      </div>
-      <div class="step-tile">
-        <span class="step-tile-number">04</span>
-        <h3>Votre démarrage</h3>
-        <p>Le calendrier de conformité est posé, le suivi administratif continue et notre équipe reste disponible pour les démarches liées au lancement de votre activité.</p>
-      </div>
-    </div>
-    <div class="center-copy" data-reveal style="margin-top:34px;">
-      <p class="pull-quote" style="margin:0 auto; text-align:center;">Vous ne recommencez pas de zéro à chaque nouveau besoin.</p>
-      <p class="lead-desc" style="max-width:640px;">Votre dossier, votre contexte et votre activité sont déjà connus de l’équipe. C’est ce qui crée une vraie continuité.</p>
-    </div>
-  </div>
-</section>
-
-<section id="privileges" class="section">
-  <div class="container">
-    <div class="section-head" data-reveal>
-      <span class="eyebrow-pill">HK 360 Privileges</span>
-      <h2 class="section-title">Votre société existe.<em>Maintenant, il faut qu’elle vende.</em></h2>
-      <p class="lead-desc" style="max-width:680px;">Les membres HK 360 bénéficient de conditions préférentielles MB Business pour lancer et développer leur nouvelle activité.</p>
-    </div>
-    <div class="grid-4" data-reveal data-stagger data-diag="r">
-      <div class="privilege-tile">
-        <div class="pulse-icon">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#F2EDE7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="3.5" width="11" height="11" rx="1.5"/><circle cx="15" cy="15" r="5.5"/></svg>
-        </div>
-        <h3>DIGITAL IDENTITY</h3>
-        <p>Identité visuelle, branding et supports professionnels alignés sur un marché international.</p>
-      </div>
-      <div class="privilege-tile">
-        <div class="pulse-icon" style="animation-delay:.6s;">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#F2EDE7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="16" rx="2"/><path d="M2.5 9h19"/><path d="M6 6.5h.01M8.5 6.5h.01"/></svg>
-        </div>
-        <h3>WEB PRESENCE</h3>
-        <p>Site vitrine, landing page ou boutique adaptée à votre activité et à vos marchés cibles.</p>
-      </div>
-      <div class="privilege-tile">
-        <div class="pulse-icon" style="animation-delay:1.2s;">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#F2EDE7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M3.5 7l8.5 6 8.5-6"/></svg>
-        </div>
-        <h3>BUSINESS SETUP</h3>
-        <p>E-mails professionnels, outils de gestion et solutions d’encaissement international.</p>
-      </div>
-      <div class="privilege-tile">
-        <div class="pulse-icon" style="animation-delay:1.8s;">
-          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#F2EDE7" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 20V4"/><path d="M3 20h18"/><path d="M6.5 16l4-4.5 3.5 3 5-6.5"/><path d="M19 8h-3.5M19 8v3.5"/></svg>
-        </div>
-        <h3>GROWTH</h3>
-        <p>Accompagnement marketing et acquisition : publicité, contenu, tunnel de conversion.</p>
-      </div>
-    </div>
-    <p class="lead-desc" data-reveal style="max-width:700px;">Un seul environnement pour passer de la création de société au lancement réel du business.</p>
-  </div>
-</section>
-
-<section id="tarif" class="section" style="padding-bottom:40px;">
-  <div class="container split-sticky">
-    <div data-reveal data-drift="-26">
-      <span class="eyebrow-pill">Tarif</span>
-      <h2 class="section-title" style="text-align:left;">HK 360<em>2 200 €</em></h2>
-      <p class="lead-desc" style="margin-left:0; max-width:460px; text-align:left;">Forfait d’accompagnement pour la création et l’installation de votre société à Hong Kong.</p>
-      <p class="lead-desc" style="margin-left:0; max-width:460px; text-align:left; font-size:14.5px; color:var(--text-muted-3);">Nous validons d’abord votre projet, votre activité et votre situation avant de démarrer votre dossier.</p>
-      <p class="lead-desc" style="margin-left:0; max-width:460px; text-align:left; font-size:12.5px; color:var(--dim);">Hors forfait : comptabilité courante et audit annuel, renouvellements à partir de la 2<sup>e</sup> année, apostilles, traductions assermentées, notariat, frais bancaires et honoraires de tiers — devis séparé.</p>
-    </div>
-    <div class="pricing-card" data-reveal>
-      <div class="pricing-card-head">
-        <span>HK 360</span>
-        <span class="price" style="font-size:52px;">2 200 €</span>
-      </div>
-      <div class="pricing-card-rule"></div>
-      <div class="pricing-card-list">
-        <span>Création complète de la Limited Company</span>
-        <span>12 mois de Company Secretary agréé</span>
-        <span>12 mois d’adresse enregistrée à Hong Kong</span>
-        <span>Accompagnement à l’ouverture de compte</span>
-        <span>Conformité de la première année</span>
-        <span>Conciergerie administrative</span>
-        <span>HK 360 Digital Privileges</span>
-      </div>
-      <a href="#" class="btn btn-glow" data-wa data-wa-msg="tarif" target="_blank" rel="noopener noreferrer">Parler de mon projet <span class="nudge">→</span></a>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-glow-card" data-reveal>
-      <span class="eyebrow-pill footer-eyebrow">Restons en contact</span>
-      <h2 class="footer-title">Hong Kong peut être votre prochain marché.<em>La distance ne doit pas être votre premier obstacle.</em></h2>
-      <p class="footer-desc">Vous avez le produit, le client, le fournisseur ou le capital. Ce qu’il vous faut maintenant, c’est une structure claire et quelqu’un sur place pour la tenir.</p>
-      <div class="footer-cta-row">
-        <a href="#" class="btn btn-glow" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.8-.1 1.5Z"/></svg>
-          Échanger sur WhatsApp
-        </a>
-      </div>
-      <p class="footer-note">Nous validons d’abord votre projet, votre activité et votre situation avant de démarrer votre dossier.</p>
-    </div>
-
-    <div class="footer-bottom-row">
-      <div class="footer-brand">
-        <img src="/assets/mb-logo-light.png" alt="MB Affaires">
-        <span class="brand-name" style="font-size:19px;">MB AFFAIRES</span>
-      </div>
-      <p class="footer-tagline">Création • Domiciliation • Conformité • Conciergerie administrative</p>
-      <span class="footer-copy">HK 360 • Hong Kong</span>
-    </div>
-    <div class="footer-policy-links">
-      <a href="/confidentialite/">Politique de confidentialité</a>
-      <a href="/mentions-legales/">Mentions légales</a>
-      <a href="/conditions-generales/">Conditions générales</a>
-      <a href="/cookies/">Politique de cookies</a>
-    </div>
-  </div>
-</footer>
-
-<a href="#" class="float-wa" data-wa data-wa-msg="projet" target="_blank" rel="noopener noreferrer" aria-label="Nous contacter sur WhatsApp" data-float-wa>
-  <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.6 14.2c-.2.7-1.2 1.3-1.9 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5-4.5-.2-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.3.5-.4.4c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.1 1 2 1.3 2.3 1.4.3.1.4.1.6-.1l.9-1c.2-.2.3-.2.6-.1l2 .9c.3.1.5.2.5.4.1.1.1.8-.1 1.5Z"/></svg>
-</a>
 
 <script src="/hk-360/js/script.js"></script>
 </body>
