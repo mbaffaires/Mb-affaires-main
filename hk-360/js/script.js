@@ -110,9 +110,11 @@
     el.__revealed = true;
     var kids = el.hasAttribute("data-reveal-stagger") ? Array.from(el.children) : [el];
     var animate = document.visibilityState === "visible" && !reduceMotion;
+    var diag = el.getAttribute("data-diag");
+    var anim = diag === "l" ? "mre-diag-l" : diag === "r" ? "mre-diag-r" : "mre-rise";
     kids.forEach(function (k, i) {
       if (!animate) return;
-      k.style.animation = "mre-rise .7s cubic-bezier(.22,.7,.25,1) " + i * 70 + "ms both";
+      k.style.animation = anim + " .7s cubic-bezier(.22,.7,.25,1) " + i * 70 + "ms both";
       var clear = function () { k.style.animation = ""; };
       k.addEventListener("animationend", clear, { once: true });
       setTimeout(clear, 1600);
@@ -146,7 +148,7 @@
         });
       };
       document.addEventListener("visibilitychange", function () {
-        document.querySelectorAll('[style*="mre-rise"]').forEach(function (k) { k.style.animation = ""; });
+        document.querySelectorAll('[style*="mre-rise"], [style*="mre-diag"]').forEach(function (k) { k.style.animation = ""; });
         sweep();
       });
       window.addEventListener("scroll", sweep, { passive: true });
