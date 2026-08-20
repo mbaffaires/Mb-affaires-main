@@ -22,7 +22,6 @@
   @keyframes mre-rise { from { opacity: 0; transform: translateY(26px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes mre-diag-l { from { opacity: 0; transform: translate3d(-56px, 38px, 0); } to { opacity: 1; transform: none; } }
   @keyframes mre-diag-r { from { opacity: 0; transform: translate3d(56px, 38px, 0); } to { opacity: 1; transform: none; } }
-  @keyframes mre-float { 0%,100% { transform: translateY(0) rotate(var(--r,0deg)); } 50% { transform: translateY(-9px) rotate(var(--r,0deg)); } }
   @keyframes mre-glow { 0%,100% { opacity: .55; transform: translateX(-50%) scale(1); } 50% { opacity: 1; transform: translateX(-50%) scale(1.06); } }
   @keyframes mre-sweep { from { background-position: 0% 50%; } to { background-position: 200% 50%; } }
   @media (max-width: 1100px) { .mre-sticky { display: none !important; } }
@@ -124,11 +123,6 @@
     .hk-grid-2 { grid-template-columns: 1fr !important; gap: 40px !important; }
     .hk-grid-4 { grid-template-columns: 1fr 1fr !important; }
     .hk-stats { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
-    .hk-badges-row { flex-wrap: wrap; justify-content: center; gap: 10px !important; }
-    .hk-badges-row > div { width: 68px !important; height: 68px !important; }
-    .hk-price-pill { flex-wrap: wrap; justify-content: center; text-align: center; padding: 14px 20px !important; border-radius: 18px !important; }
-    .hk-price-sep { display: none; }
-    .hk-price-label { flex-basis: 100%; text-align: center; margin-top: 2px; }
     .hk-hero { padding: 20px 22px 100px !important; }
     .hk-h1 { font-size: clamp(32px,10vw,86px) !important; }
     .mre-sticky { display: none !important; }
@@ -237,23 +231,10 @@ src="https://www.facebook.com/tr?id=1593886608929984&ev=PageView&noscript=1"
     <div style="position:absolute;top:-260px;left:50%;width:1100px;height:620px;background:radial-gradient(50% 50% at 50% 50%, rgba(69,227,164,.09), rgba(8,9,10,0) 70%);transform:translateX(-50%);pointer-events:none"></div>
 
     <div style="position:relative;max-width:1080px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center">
-      <div class="hk-badges-row" style="display:flex;gap:18px;animation:mre-rise .7s ease-out both">
-        <div style="--r:-6deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out infinite">CR</div>
-        <div style="--r:4deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out .8s infinite">IRD</div>
-        <div style="--r:-3deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out 1.6s infinite">BR</div>
-        <div style="--r:7deg;width:82px;height:82px;border:1px solid rgba(255,255,255,.09);border-radius:26px;background:#131517;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.12em;color:rgba(242,243,241,.6);animation:mre-float 6s ease-in-out 2.4s infinite">CS</div>
-      </div>
-
-      <div class="hk-price-pill" style="display:flex;align-items:center;gap:12px;margin-top:34px;padding:9px 20px 9px 12px;border:1px solid rgba(255,255,255,.09);border-radius:999px;background:#101213;animation:mre-rise .7s ease-out .1s both">
-        <span style="width:22px;height:22px;border-radius:50%;background:rgba(69,227,164,.16);color:#45E3A4;display:flex;align-items:center;justify-content:center;font-size:11px">★</span>
-        <span style="font-size:14.5px;font-weight:600;color:#45E3A4">2 200 €</span>
-        <span class="hk-price-sep" style="width:1px;height:14px;background:rgba(255,255,255,.14)"></span>
-        <span class="hk-price-label" style="font-size:14.5px;color:rgba(242,243,241,.72)">forfait complet — création, adresse, Company Secretary, conciergerie</span>
-      </div>
-
-      <h1 class="hk-h1" style="margin:34px 0 0;max-width:960px;font-weight:700;font-size:clamp(42px,6vw,86px);line-height:1.02;letter-spacing:-.035em;text-wrap:balance">
-        <span style="background:linear-gradient(96deg,#45E3A4,#F2F3F1 46%,#45E3A4 78%,#F2F3F1);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:mre-sweep 9s linear infinite">Votre société à Hong Kong.</span><br />Sans vous déplacer.
+      <h1 class="hk-h1" style="margin:0;max-width:960px;font-weight:700;font-size:clamp(42px,6vw,86px);line-height:1.02;letter-spacing:-.035em;text-wrap:balance">
+        <span style="background:linear-gradient(96deg,#45E3A4,#F2F3F1 46%,#45E3A4 78%,#F2F3F1);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:mre-sweep 9s linear infinite">Dites adieu à la complexité fiscale, votre société à Hong Kong.</span>
       </h1>
+      <p style="margin:14px 0 0;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(19px,2.4vw,26px);color:rgba(242,243,241,.55);animation:mre-rise .7s ease-out .05s both">Sans vous déplacer.</p>
 
       <p style="margin:28px 0 0;max-width:760px;font-size:19px;color:rgba(242,243,241,.6);text-wrap:pretty;animation:mre-rise .7s ease-out .2s both">
         <span style="color:#F2F3F1">HK 360 est conçu pour les entrepreneurs et investisseurs basés en France</span> qui veulent une société à Hong Kong sans naviguer seuls dans une juridiction qu’ils ne connaissent pas.
