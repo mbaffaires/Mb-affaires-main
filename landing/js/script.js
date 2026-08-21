@@ -7,7 +7,7 @@
   var WHATSAPP_NUMBER = "212777010882";
 
   var MESSAGES = {
-    projet: "Bonjour MB Affaires, je souhaite échanger sur mon projet 360 à Marrakech.",
+    projet: "Bonjour MB Affaires, je souhaite échanger sur mon projet 360 au Maroc.",
     tarif: "Bonjour MB Affaires, je souhaite parler de mon projet et du forfait 360 (900 €).",
     concierge: "Bonjour MB Affaires, j’ai besoin d’aide sur une démarche administrative au Maroc."
   };
