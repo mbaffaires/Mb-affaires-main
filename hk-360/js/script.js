@@ -4,7 +4,7 @@
   // ------------------------------------------------------------------
   // WhatsApp links
   // ------------------------------------------------------------------
-  var WHATSAPP_NUMBER = "212777010882";
+  var WHATSAPP_NUMBER = "212770550439";
 
   var MESSAGES = {
     projet: "Bonjour MB Affaires, je souhaite échanger sur mon projet de société à Hong Kong (HK 360).",
