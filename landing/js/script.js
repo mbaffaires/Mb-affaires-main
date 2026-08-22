@@ -20,7 +20,7 @@
     var key = el.getAttribute("data-wa-msg") || "projet";
     el.setAttribute("href", waLink(MESSAGES[key] || MESSAGES.projet));
     el.addEventListener("click", function () {
-      if (window.umami) window.umami.track("whatsapp_click", { context: key });
+      if (window.umami) window.umami.track("whatsapp_click_landing", { context: key });
     });
   });
 
